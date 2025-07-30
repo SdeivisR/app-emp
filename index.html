@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Ingreso de Vehículos</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fuente Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- PDF-lib -->
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+  <!-- Tema -->
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- Scripts -->
+  <script src="generarPDF.js" defer></script>
+  <script src="script.js" defer></script>
+  <link rel="manifest" href="/manifest.json">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-2xl font-bold mb-6 text-center">Registro de Ingreso de Vehículos</h1>
+
+        <!-- Container for notification messages -->
+        <div id="message-container" class="fixed top-4 right-4 z-50"></div>
+
+        <div id="registroVehiculoForm">
+            <!-- Section: Driver and Vehicle Data -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-semibold mb-4">Datos del Conductor y Vehículo</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="placa" class="block text-sm font-medium text-gray-700 mb-1">Placa del Vehículo:</label>
+                        <input type="text" id="placa" name="placa" class="input-field w-full" required>
+                    </div>
+                    <div>
+                        <label for="empresa" class="block text-sm font-medium text-gray-700 mb-1">Empresa:</label>
+                        <input type="text" id="empresa" name="empresa" class="input-field w-full" required>
+                    </div>
+                    <div>
+                        <label for="conductor" class="block text-sm font-medium text-gray-700 mb-1">Conductor:</label>
+                        <input type="text" id="conductor" name="conductor" class="input-field w-full" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="fecha_ingreso" class="block text-sm font-medium text-gray-700 mb-1">Fecha de Ingreso:</label>
+                        <input type="date" id="fecha_ingreso" name="fecha_ingreso" class="input-field w-full" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="hora_ingreso" class="block text-sm font-medium text-gray-700 mb-1">Hora de Ingreso:</label>
+                        <input type="time" id="hora_ingreso" name="hora_ingreso" class="input-field w-full" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="fecha_Salida" class="block text-sm font-medium text-gray-700 mb-1">Fecha de Salida:</label>
+                        <input type="date" id="fecha_salida" name="fecha_salida" class="input-field w-full" required>
+                    </div>
+                    <div>
+                        <label for="kilometraje" class="block text-sm font-medium text-gray-700 mb-1">Kilometraje:</label>
+                        <input type="number" id="kilometraje" name="kilometraje" class="input-field w-full" min="0" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-semibold mb-4">COMPONENTES PRINCIPALES</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- LUCES DELANTERAS -->
+                    <div class="item-group" data-item-name="LUCES DELANTERAS">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">LUCES DELANTERAS:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="luces_delanteras_si" name="luces_delanteras" value="Si" class="radio-option">
+                            <label for="luces_delanteras_si">Sí</label>
+                            <input type="radio" id="luces_delanteras_no" name="luces_delanteras" value="No" class="radio-option" checked>
+                            <label for="luces_delanteras_no">No</label>
+                        </div>
+                        <textarea id="comentario_luces_delanteras" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- NEBLINEROS -->
+                    <div class="item-group" data-item-name="NEBLINEROS">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">NEBLINEROS:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="neblineros_si" name="neblineros" value="Si" class="radio-option">
+                            <label for="neblineros_si">Sí</label>
+                            <input type="radio" id="neblineros_no" name="neblineros" value="No" class="radio-option" checked>
+                            <label for="neblineros_no">No</label>
+                        </div>
+                        <textarea id="comentario_neblineros" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- LUCES DIRECCIONALES -->
+                    <div class="item-group" data-item-name="LUCES DIRECCIONALES">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">LUCES DIRECCIONALES:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="direccionales_si" name="luces_direccionales" value="Si" class="radio-option">
+                            <label for="direccionales_si">Sí</label>
+                            <input type="radio" id="direccionales_no" name="luces_direccionales" value="No" class="radio-option" checked>
+                            <label for="direccionales_no">No</label>
+                        </div>
+                        <textarea id="comentario_direccionales" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- LUCES DE SALON -->
+                    <div class="item-group" data-item-name="LUCES DE SALON">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">LUCES DE SALÓN:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="luces_salon_si" name="luces_salon" value="Si" class="radio-option">
+                            <label for="luces_salon_si">Sí</label>
+                            <input type="radio" id="luces_salon_no" name="luces_salon" value="No" class="radio-option" checked>
+                            <label for="luces_salon_no">No</label>
+                        </div>
+                        <textarea id="comentario_luces_salon" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- LUCES DE EMERGENCIA -->
+                    <div class="item-group" data-item-name="LUCES DE EMERGENCIA">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">LUCES DE EMERGENCIA:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="luces_emergencia_si" name="luces_emergencia" value="Si" class="radio-option">
+                            <label for="luces_emergencia_si">Sí</label>
+                            <input type="radio" id="luces_emergencia_no" name="luces_emergencia" value="No" class="radio-option" checked>
+                            <label for="luces_emergencia_no">No</label>
+                        </div>
+                        <textarea id="comentario_luces_emergencia" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- CLAXON -->
+                    <div class="item-group" data-item-name="CLAXON">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">CLAXON:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="claxon_si" name="claxon" value="Si" class="radio-option">
+                            <label for="claxon_si">Sí</label>
+                            <input type="radio" id="claxon_no" name="claxon" value="No" class="radio-option" checked>
+                            <label for="claxon_no">No</label>
+                        </div>
+                        <textarea id="comentario_claxon" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+                    <!-- LUCES DE FRENO -->
+                    <div class="item-group" data-item-name="LUCES DE FRENO">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">LUCES DE FRENO:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="luces_freno_si" name="luces_freno" value="Si" class="radio-option">
+                            <label for="luces_freno_si">Sí</label>
+                            <input type="radio" id="luces_freno_no" name="luces_freno" value="No" class="radio-option" checked>
+                            <label for="luces_freno_no">No</label>
+                        </div>
+                        <textarea id="comentario_luces_freno" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- LUCES POSTERIORES -->
+                    <div class="item-group" data-item-name="LUCES POSTERIORES">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">LUCES POSTERIORES:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="luces_posteriores_si" name="luces_posteriores" value="Si" class="radio-option">
+                            <label for="luces_posteriores_si">Sí</label>
+                            <input type="radio" id="luces_posteriores_no" name="luces_posteriores" value="No" class="radio-option" checked>
+                            <label for="luces_posteriores_no">No</label>
+                        </div>
+                        <textarea id="comentario_luces_posteriores" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- FARO PIRATA -->
+                    <div class="item-group" data-item-name="FARO PIRATA">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">FARO PIRATA:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="faro_pirata_si" name="faro_pirata" value="Si" class="radio-option">
+                            <label for="faro_pirata_si">Sí</label>
+                            <input type="radio" id="faro_pirata_no" name="faro_pirata" value="No" class="radio-option" checked>
+                            <label for="faro_pirata_no">No</label>
+                        </div>
+                        <textarea id="comentario_faro_pirata" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- ALARMA DE RETROCESO -->
+                    <div class="item-group" data-item-name="ALARMA DE RETROCESO">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">ALARMA DE RETROCESO:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="alarma_retroceso_si" name="alarma_retroceso" value="Si" class="radio-option">
+                            <label for="alarma_retroceso_si">Sí</label>
+                            <input type="radio" id="alarma_retroceso_no" name="alarma_retroceso" value="No" class="radio-option" checked>
+                            <label for="alarma_retroceso_no">No</label>
+                        </div>
+                        <textarea id="comentario_alarma_retroceso" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- LIMPIA PARABRISA -->
+                    <div class="item-group" data-item-name="LIMPIA PARABRISA">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">LIMPIA PARABRISA:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="limpia_parabrisas_si" name="limpia_parabrisas" value="Si" class="radio-option">
+                            <label for="limpia_parabrisas_si">Sí</label>
+                            <input type="radio" id="limpia_parabrisas_no" name="limpia_parabrisas" value="No" class="radio-option" checked>
+                            <label for="limpia_parabrisas_no">No</label>
+                        </div>
+                        <textarea id="comentario_limpia_parabrisas" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- ESPEJOS RETROVISORES -->
+                    <div class="item-group" data-item-name="ESPEJOS RETROVISORES">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">ESPEJOS RETROVISORES:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="espejos_retrovisores_si" name="espejos_retrovisores" value="Si" class="radio-option">
+                            <label for="espejos_retrovisores_si">Sí</label>
+                            <input type="radio" id="espejos_retrovisores_no" name="espejos_retrovisores" value="No" class="radio-option" checked>
+                            <label for="espejos_retrovisores_no">No</label>
+                        </div>
+                        <textarea id="comentario_espejos_retrovisores" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- VENTANAS LATERALES -->
+                    <div class="item-group" data-item-name="VENTANAS LATERALES">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">VENTANAS LATERALES:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="ventanas_laterales_si" name="ventanas_laterales" value="Si" class="radio-option">
+                            <label for="ventanas_laterales_si">Sí</label>
+                            <input type="radio" id="ventanas_laterales_no" name="ventanas_laterales" value="No" class="radio-option" checked>
+                            <label for="ventanas_laterales_no">No</label>
+                        </div>
+                        <textarea id="comentario_ventanas_laterales" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- TESTIGOS DE PANEL DE CONTROL -->
+                    <div class="item-group" data-item-name="TESTIGOS DE PANEL DE CONTROL">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">TESTIGOS DE PANEL DE CONTROL:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="testigos_panel_si" name="testigos_panel" value="Si" class="radio-option">
+                            <label for="testigos_panel_si">Sí</label>
+                            <input type="radio" id="testigos_panel_no" name="testigos_panel" value="No" class="radio-option" checked>
+                            <label for="testigos_panel_no">No</label>
+                        </div>
+                        <textarea id="comentario_testigos_panel" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- PLUMILLAS -->
+                    <div class="item-group" data-item-name="PLUMILLAS">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">PLUMILLAS:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="plumillas_si" name="plumillas" value="Si" class="radio-option">
+                            <label for="plumillas_si">Sí</label>
+                            <input type="radio" id="plumillas_no" name="plumillas" value="No" class="radio-option" checked>
+                            <label for="plumillas_no">No</label>
+                        </div>
+                        <textarea id="comentario_plumillas" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+
+                </div>  
+            </div>
+
+            <!-- Section: Safety Elements and Tools -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-semibold mb-4">Elementos de Seguridad y Herramientas</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                    <!-- BOTIQUIN (Comment only) -->
+                    <div class="item-group" data-item-name="BOTIQUIN">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">BOTIQUÍN:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="botiquin_si" name="botiquin" value="Si" class="radio-option">
+                            <label for="botiquin_si">Sí</label>
+                            <input type="radio" id="botiquin_no" name="botiquin" value="No" class="radio-option" checked>
+                            <label for="botiquin_no">No</label>
+                        </div>
+                            <textarea id="comentario_botiquin" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+                    
+                    <!-- EXTINTOR (Comment only) -->
+                    <div class="item-group" data-item-name="EXTINTOR">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">EXTINTOR FECHA VCTO:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="extintor_si" name="extintor" value="Si" class="radio-option">
+                            <label for="extintor_si">Sí</label>
+                            <input type="radio" id="extintor_no" name="extintor" value="No" class="radio-option" checked>
+                            <label for="extintor_no">No</label>
+                        </div>
+                            <textarea id="comentario_extintor" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+
+                    <!-- CONOS (Quantity and Comment) -->
+                    <div class="item-group" data-item-name="CONOS">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">CONOS:</label>
+                        <div class="flex items-center space-x-4 mb-2">
+                            <div class="radio-btn">
+                                <input type="radio" id="conos_si" name="conos" value="Si" class="radio-option" onchange="toggleCantidad('conos', true)">
+                                <label for="conos_si">Sí</label>
+                                <input type="radio" id="conos_no" name="conos" value="No" class="radio-option" onchange="toggleCantidad('conos', false)"checked>
+                                <label for="conos_no">No</label>
+                            </div>
+                            </div>
+                                <input type="number" id="cantidad_conos" placeholder="Cantidad" class="hidden border rounded p-1 w-full mb-2">
+                                <textarea  id="comentario_conos" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                            </div>
+
+                   <!-- Tacos (Quantity and Comment) -->
+                    <div class="item-group" data-item-name="TACOS">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">TACOS:</label>
+                    <div class="flex items-center space-x-4 mb-2">
+                        <div class="radio-btn">
+                                <input type="radio" id="tacos_si" name="tacos" value="Si" class="radio-option" onchange="toggleCantidad('tacos', true)">
+                                <label for="tacos_si">Sí</label>
+                                <input type="radio" id="tacos_no" name="tacos" value="No" class="radio-option" onchange="toggleCantidad('tacos', false)"checked>
+                                <label for="tacos_no">No</label>
+                            </div>
+                                </div>
+                                    <input type="number" id="cantidad_tacos" placeholder="Cantidad" class="hidden border rounded p-1 w-full mb-2">
+                                    <textarea id="comentario_tacos" placeholder="Comentario" class="w-full border rounded p-1"></textarea>
+                                </div>
+
+                    <!-- Triangulos (Quantity and Comment) -->
+                    <div class="item-group" data-item-name="TRIANGULOS">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">TRIANGULOS:</label>
+                        <div class="flex items-center space-x-4 mb-2"> <!-- Row for radios and dynamic input -->
+                            <div class="radio-btn">
+                                <input type="radio" id="triangulos_si" name="triangulos" value="Si" class="radio-option" onchange="toggleCantidad('triangulos', true)">
+                                <label for="triangulos_si">Sí</label>
+                                <input type="radio" id="triangulos_no" name="triangulos" value="No" class="radio-option" onchange="toggleCantidad('triangulos', false)"checked>
+                                <label for="triangulos_no">No</label>
+                            </div>
+                                </div>
+                                    <input type="number" id="cantidad_triangulos" placeholder="Cantidad" class="hidden border rounded p-1 w-full mb-2">
+                                    <textarea id="comentario_triangulos" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                                </div>
+
+                    <!-- CABLE REMOLQUE (Comment only) -->
+                    <div class="item-group" data-item-name="CABLE REMOLQUE">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">CABLE REMOLQUE:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="cable_remolque_si" name="cable_remolque" value="Si" class="radio-option">
+                            <label for="cable_remolque_si">Sí</label>
+                            <input type="radio" id="cable_remolque_no" name="cable_remolque" value="No" class="radio-option" checked>
+                            <label for="cable_remolque_no">No</label>
+                        </div>
+                            <textarea id="comentario_cableremo" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+                    
+                    <!-- CABLE ENERGIA (Comment only) -->
+                    <div class="item-group" data-item-name="CABLE PASE DE ENERGIA">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">CABLE PASE DE ENERGIA:</label>
+                        <div class="radio-btn">
+                            <input type="radio" id="cablePaen_si" name="cable_paen" value="Si" class="radio-option">
+                            <label for="cablePaen_si">Sí</label>
+                            <input type="radio" id="cablePaen_no" name="cable_paen" value="No" class="radio-option" checked>
+                            <label for="cablePaen_no">No</label>
+                        </div>
+                            <textarea id="comentario_PaEn" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+                        <!-- ESLINGA (Comment only) -->
+                        <div class="item-group" data-item-name="ESLINGA">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">ESLINGA:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="eslinga_si" name="eslinga" value="Si" class="radio-option">
+                                <label for="eslinga_si">Sí</label>
+                                <input type="radio" id="eslinga_no" name="eslinga" value="No" class="radio-option" checked>
+                                <label for="eslinga_no">No</label>
+                        </div>
+                            <textarea id="comentario_eslinga" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                                            <!-- LINTERNA (Comment only) -->
+                        <div class="item-group" data-item-name="LINTERNA">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">LINTERNA:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="linterna_si" name="linterna" value="Si" class="radio-option">
+                                <label for="linterna_si">Sí</label>
+                                <input type="radio" id="linterna_no" name="linterna" value="No" class="radio-option" checked>
+                                <label for="linterna_no">No</label>
+                            </div>
+                            <textarea id="comentario_linterna" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- HERRAMIENTAS (Comment only) -->
+                        <div class="item-group" data-item-name="HERRAMIENTAS">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">HERRAMIENTAS:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="herramientas_si" name="herramientas" value="Si" class="radio-option">
+                                <label for="herramientas_si">Sí</label>
+                                <input type="radio" id="herramientas_no" name="herramientas" value="No" class="radio-option" checked>
+                                <label for="herramientas_no">No</label>
+                            </div>
+                            <textarea id="comentario_herramientas" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- KIT ANTIDERRAMES (Comment only) -->
+                        <div class="item-group" data-item-name="KIT ANTIDERRAMES">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">KIT ANTIDERRAMES:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="anti_si" name="kit_antiderrames" value="Si" class="radio-option">
+                                <label for="anti_si">Sí</label>
+                                <input type="radio" id="anti_no" name="kit_antiderrames" value="No" class="radio-option" checked>
+                                <label for="anti_no">No</label>
+                            </div>
+                            <textarea id="comentario_antiderrames" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- MARTILLO DE GOMA (Comment only) -->
+                        <div class="item-group" data-item-name="MARTILLO DE GOMA">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">MARTILLO DE GOMA:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="martillo_si" name="martillo_goma" value="Si" class="radio-option">
+                                <label for="martillo_si">Sí</label>
+                                <input type="radio" id="martillo_no" name="martillo_goma" value="No" class="radio-option" checked>
+                                <label for="martillo_no">No</label>
+                            </div>
+                            <textarea id="comentario_martillo" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- CIRCULINA CINTA REFLECTIVA (Comment only) -->
+                        <div class="item-group" data-item-name="CIRCULINA CINTA REFLECTIVA">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">CIRCULINA:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="circulina_si" name="circulina" value="Si" class="radio-option">
+                                <label for="circulina_si">Sí</label>
+                                <input type="radio" id="circulina_no" name="circulina" value="No" class="radio-option" checked>
+                                <label for="circulina_no">No</label>
+                            </div>
+                            <textarea id="comentario_circulina" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- CINTA REFLECTIVA (Comment only) -->
+                        <div class="item-group" data-item-name="CINTA REFLECTIVA">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">CINTA REFLECTIVA:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="cinta_si" name="cinta_reflectiva" value="Si" class="radio-option">
+                                <label for="cinta_si">Sí</label>
+                                <input type="radio" id="cinta_no" name="cinta_reflectiva" value="No" class="radio-option" checked>
+                                <label for="cinta_no">No</label>
+                            </div>
+                            <textarea id="comentario_cinta" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- CINTURON DE SEGURIDAD (Comment only) -->
+                        <div class="item-group" data-item-name="CINTURON DE SEGURIDAD">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">CINTURÓN DE SEGURIDAD:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="cinturon_si" name="cinturon_seguridad" value="Si" class="radio-option">
+                                <label for="cinturon_si">Sí</label>
+                                <input type="radio" id="cinturon_no" name="cinturon_seguridad" value="No" class="radio-option" checked>
+                                <label for="cinturon_no">No</label>
+                            </div>
+                            <textarea id="comentario_cinturon" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- PERTIGA (Comment only) -->
+                        <div class="item-group" data-item-name="PERTIGA">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">PÉRTIGA:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="pertiga_si" name="pertiga" value="Si" class="radio-option">
+                                <label for="pertiga_si">Sí</label>
+                                <input type="radio" id="pertiga_no" name="pertiga" value="No" class="radio-option" checked>
+                                <label for="pertiga_no">No</label>
+                            </div>
+                            <textarea id="comentario_pertiga" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- CAMARA (Comment only) -->
+                        <div class="item-group" data-item-name="CAMARA">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">CÁMARA:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="camara_si" name="camara" value="Si" class="radio-option">
+                                <label for="camara_si">Sí</label>
+                                <input type="radio" id="camara_no" name="camara" value="No" class="radio-option" checked>
+                                <label for="camara_no">No</label>
+                            </div>
+                            <textarea id="comentario_camara" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- SIRENA (Comment only) -->
+                        <div class="item-group" data-item-name="SIRENA">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">SIRENA:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="sirena_si" name="sirena" value="Si" class="radio-option">
+                                <label for="sirena_si">Sí</label>
+                                <input type="radio" id="sirena_no" name="sirena" value="No" class="radio-option" checked>
+                                <label for="sirena_no">No</label>
+                            </div>
+                            <textarea id="comentario_sirena" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+                    </div>  
+                </div>
+                <!-- Section: Safety Elements and Tools -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-semibold mb-4">PRUEBA DE MOTOR EN MARCHA</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- VERIFICAR FRENO DE SERVICIO -->
+                    <div class="item-group" data-item-name="VERIFICAR FRENO DE SERVICIO">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">VERIFICAR FRENO DE SERVICIO:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="freno_servicio_si" name="freno_servicio" value="Si" class="radio-option">
+                                <label for="freno_servicio_si">Sí</label>
+                                <input type="radio" id="freno_servicio_no" name="freno_servicio" value="No" class="radio-option" checked>
+                                <label for="freno_servicio_no">No</label>
+                            </div>
+                            <textarea id="comentario_freno_servicio" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                        <!-- VERIFICAR FUGAS DE ACEITE/D2 -->
+                        <div class="item-group" data-item-name="VERIFICAR FUGAS DE ACEITE/D2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">VERIFICAR FUGAS DE ACEITE/D2:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="fugas_aceite_si" name="fugas_aceite" value="Si" class="radio-option">
+                                <label for="fugas_aceite_si">Sí</label>
+                                <input type="radio" id="fugas_aceite_no" name="fugas_aceite" value="No" class="radio-option" checked>
+                                <label for="fugas_aceite_no">No</label>
+                            </div>
+                            <textarea id="comentario_fugas_aceite" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- VERIFICAR SISTEMA 4X4 -->
+                        <div class="item-group" data-item-name="VERIFICAR SISTEMA 4X4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">VERIFICAR SISTEMA 4X4:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="sistema_4x4_si" name="sistema_4x4" value="Si" class="radio-option">
+                                <label for="sistema_4x4_si">Sí</label>
+                                <input type="radio" id="sistema_4x4_no" name="sistema_4x4" value="No" class="radio-option" checked>
+                                <label for="sistema_4x4_no">No</label>
+                            </div>
+                            <textarea id="comentario_sistema_4x4" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- VERIFICAR NIVEL DE COMBUSTIBLE -->
+                        <div class="item-group" data-item-name="VERIFICAR NIVEL DE COMBUSTIBLE">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">VERIFICAR NIVEL DE COMBUSTIBLE:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="nivel_combustible_si" name="nivel_combustible" value="Si" class="radio-option">
+                                <label for="nivel_combustible_si">Sí</label>
+                                <input type="radio" id="nivel_combustible_no" name="nivel_combustible" value="No" class="radio-option" checked>
+                                <label for="nivel_combustible_no">No</label>
+                            </div>
+                            <textarea id="comentario_nivel_combustible" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- VERIFICAR TEMPERATURA DE MOTOR -->
+                        <div class="item-group" data-item-name="VERIFICAR TEMPERATURA DE MOTOR">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">VERIFICAR TEMPERATURA DE MOTOR:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="temperatura_motor_si" name="temperatura_motor" value="Si" class="radio-option">
+                                <label for="temperatura_motor_si">Sí</label>
+                                <input type="radio" id="temperatura_motor_no" name="temperatura_motor" value="No" class="radio-option" checked>
+                                <label for="temperatura_motor_no">No</label>
+                            </div>
+                            <textarea id="comentario_temperatura_motor" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- VERIFICAR PRESION DE ACEITE -->
+                        <div class="item-group" data-item-name="VERIFICAR PRESION DE ACEITE">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">VERIFICAR PRESIÓN DE ACEITE:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="presion_aceite_si" name="presion_aceite" value="Si" class="radio-option">
+                                <label for="presion_aceite_si">Sí</label>
+                                <input type="radio" id="presion_aceite_no" name="presion_aceite" value="No" class="radio-option" checked>
+                                <label for="presion_aceite_no">No</label>
+                            </div>
+                            <textarea id="comentario_presion_aceite" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- VERIFICAR AIRE ACONDICIONADO -->
+                        <div class="item-group" data-item-name="VERIFICAR AIRE ACONDICIONADO">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">VERIFICAR AIRE ACONDICIONADO:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="aire_acondicionado_si" name="aire_acondicionado" value="Si" class="radio-option">
+                                <label for="aire_acondicionado_si">Sí</label>
+                                <input type="radio" id="aire_acondicionado_no" name="aire_acondicionado" value="No" class="radio-option" checked>
+                                <label for="aire_acondicionado_no">No</label>
+                            </div>
+                            <textarea id="comentario_aire_acondicionado" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- VERIFICAR DIRECCION -->
+                        <div class="item-group" data-item-name="VERIFICAR DIRECCION">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">VERIFICAR DIRECCIÓN:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="direccion_si" name="direccion" value="Si" class="radio-option">
+                                <label for="direccion_si">Sí</label>
+                                <input type="radio" id="direccion_no" name="direccion" value="No" class="radio-option" checked>
+                                <label for="direccion_no">No</label>
+                            </div>
+                            <textarea id="comentario_direccion" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- VERIFICAR PEDALES -->
+                        <div class="item-group" data-item-name="VERIFICAR PEDALES">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">VERIFICAR PEDALES:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="pedales_si" name="pedales" value="Si" class="radio-option">
+                                <label for="pedales_si">Sí</label>
+                                <input type="radio" id="pedales_no" name="pedales" value="No" class="radio-option" checked>
+                                <label for="pedales_no">No</label>
+                            </div>
+                            <textarea id="comentario_pedales" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- VERIFICAR FUN DE PUERTAS -->
+                        <div class="item-group" data-item-name="VERIFICAR FUN DE PUERTAS">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">VERIFICAR FUN. DE PUERTAS:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="puertas_si" name="puertas" value="Si" class="radio-option">
+                                <label for="puertas_si">Sí</label>
+                                <input type="radio" id="puertas_no" name="puertas" value="No" class="radio-option" checked>
+                                <label for="puertas_no">No</label>
+                            </div>
+                            <textarea id="comentario_puertas" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- VERIFICAR FUN. DE VENTANAS -->
+                        <div class="item-group" data-item-name="VERIFICAR FUN. DE VENTANAS">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">VERIFICAR FUN. DE VENTANAS:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="fun_ventanas_si" name="ventanas_funcionan" value="Si" class="radio-option">
+                                <label for="fun_ventanas_si">Sí</label>
+                                <input type="radio" id="fun_ventanas_no" name="ventanas_funcionan" value="No" class="radio-option" checked>
+                                <label for="fun_ventanas_no">No</label>
+                            </div>
+                            <textarea id="comentario_fun_ventanas" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+                    </div>
+                    </div>
+            
+                <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                    <h2 class="text-xl font-semibold mb-4">DOCUMENTACION</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <!-- TARJETA DE PROPIEDAD -->
+                        <div class="item-group" data-item-name="TARJETA DE PROPIEDAD">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">TARJETA DE PROPIEDAD:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="tarjeta_propiedad_si" name="tarjeta_propiedad" value="Si" class="radio-option">
+                                <label for="tarjeta_propiedad_si">Sí</label>
+                                <input type="radio" id="tarjeta_propiedad_no" name="tarjeta_propiedad" value="No" class="radio-option" checked>
+                                <label for="tarjeta_propiedad_no">No</label>
+                            </div>
+                            <textarea id="comentario_tarjeta_propiedad" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- MANUAL DE OPERACION -->
+                        <div class="item-group" data-item-name="MANUAL DE OPERACION">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">MANUAL DE OPERACIÓN:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="manual_operacion_si" name="manual_operacion" value="Si" class="radio-option">
+                                <label for="manual_operacion_si">Sí</label>
+                                <input type="radio" id="manual_operacion_no" name="manual_operacion" value="No" class="radio-option" checked>
+                                <label for="manual_operacion_no">No</label>
+                            </div>
+                            <textarea id="comentario_manual_operacion" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- REVISION TECNICA -->
+                        <div class="item-group" data-item-name="REVISION TECNICA">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">REVISIÓN TÉCNICA:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="revision_tecnica_si" name="revision_tecnica" value="Si" class="radio-option">
+                                <label for="revision_tecnica_si">Sí</label>
+                                <input type="radio" id="revision_tecnica_no" name="revision_tecnica" value="No" class="radio-option" checked>
+                                <label for="revision_tecnica_no">No</label>
+                            </div>
+                            <textarea id="comentario_revision_tecnica" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- SOAT -->
+                        <div class="item-group" data-item-name="SOAT">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">SOAT:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="soat_si" name="soat" value="Si" class="radio-option">
+                                <label for="soat_si">Sí</label>
+                                <input type="radio" id="soat_no" name="soat" value="No" class="radio-option" checked>
+                                <label for="soat_no">No</label>
+                            </div>
+                            <textarea id="comentario_soat" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- TARJETA DE CIRCULACION -->
+                        <div class="item-group" data-item-name="TARJETA DE CIRCULACION">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">TARJETA DE CIRCULACIÓN:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="tarjeta_circulacion_si" name="tarjeta_circulacion" value="Si" class="radio-option">
+                                <label for="tarjeta_circulacion_si">Sí</label>
+                                <input type="radio" id="tarjeta_circulacion_no" name="tarjeta_circulacion" value="No" class="radio-option" checked>
+                                <label for="tarjeta_circulacion_no">No</label>
+                            </div>
+                            <textarea id="comentario_tarjeta_circulacion" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+                    </div>  
+                    </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                    <h2 class="text-xl font-semibold mb-4">ELEMENTOS Y NIVELES</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- TAPA/ ACEITE DE MOTOR -->
+                        <div class="item-group" data-item-name="TAPA/ ACEITE DE MOTOR">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">TAPA/ ACEITE DE MOTOR:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="tapa_aceite_motor_si" name="tapa_aceite_motor" value="Si" class="radio-option">
+                                <label for="tapa_aceite_motor_si">Sí</label>
+                                <input type="radio" id="tapa_aceite_motor_no" name="tapa_aceite_motor" value="No" class="radio-option" checked>
+                                <label for="tapa_aceite_motor_no">No</label>
+                            </div>
+                            <textarea id="comentario_tapa_aceite_motor" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- TAPA/ ACEITE HIDRAULICO -->
+                        <div class="item-group" data-item-name="TAPA/ ACEITE HIDRAULICO">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">TAPA/ ACEITE HIDRÁULICO:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="tapa_aceite_hidraulico_si" name="tapa_aceite_hidraulico" value="Si" class="radio-option">
+                                <label for="tapa_aceite_hidraulico_si">Sí</label>
+                                <input type="radio" id="tapa_aceite_hidraulico_no" name="tapa_aceite_hidraulico" value="No" class="radio-option" checked>
+                                <label for="tapa_aceite_hidraulico_no">No</label>
+                            </div>
+                            <textarea id="comentario_tapa_aceite_hidraulico" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- TAPA /LIQUIDO DE FRENOS -->
+                        <div class="item-group" data-item-name="TAPA /LIQUIDO DE FRENOS">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">TAPA / LÍQUIDO DE FRENOS:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="tapa_liquido_frenos_si" name="tapa_liquido_frenos" value="Si" class="radio-option">
+                                <label for="tapa_liquido_frenos_si">Sí</label>
+                                <input type="radio" id="tapa_liquido_frenos_no" name="tapa_liquido_frenos" value="No" class="radio-option" checked>
+                                <label for="tapa_liquido_frenos_no">No</label>
+                            </div>
+                            <textarea id="comentario_tapa_liquido_frenos" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- TAPA/REFRIGERANTE -->
+                        <div class="item-group" data-item-name="TAPA/REFRIGERANTE">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">TAPA / REFRIGERANTE:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="tapa_refrigerante_si" name="tapa_refrigerante" value="Si" class="radio-option">
+                                <label for="tapa_refrigerante_si">Sí</label>
+                                <input type="radio" id="tapa_refrigerante_no" name="tapa_refrigerante" value="No" class="radio-option" checked>
+                                <label for="tapa_refrigerante_no">No</label>
+                            </div>
+                            <textarea id="comentario_tapa_refrigerante" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- TAPA /AGUA PARABRISAS -->
+                        <div class="item-group" data-item-name="TAPA /AGUA PARABRISAS">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">TAPA / AGUA PARABRISAS:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="tapa_agua_parabrisas_si" name="tapa_agua_parabrisas" value="Si" class="radio-option">
+                                <label for="tapa_agua_parabrisas_si">Sí</label>
+                                <input type="radio" id="tapa_agua_parabrisas_no" name="tapa_agua_parabrisas" value="No" class="radio-option" checked>
+                                <label for="tapa_agua_parabrisas_no">No</label>
+                            </div>
+                            <textarea id="comentario_tapa_agua_parabrisas" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- PROTECTOR DE BORNE DE BATERIA -->
+                        <div class="item-group" data-item-name="PROTECTOR DE BORNE DE BATERIA">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">PROTECTOR DE BORNE DE BATERÍA:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="protector_bateria_si" name="protector_bateria" value="Si" class="radio-option">
+                                <label for="protector_bateria_si">Sí</label>
+                                <input type="radio" id="protector_bateria_no" name="protector_bateria" value="No" class="radio-option" checked>
+                                <label for="protector_bateria_no">No</label>
+                            </div>
+                            <textarea id="comentario_protector_bateria" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- FAJAS DE ALTERNADOR -->
+                        <div class="item-group" data-item-name="FAJAS DE ALTERNADOR">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">FAJAS DE ALTERNADOR:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="fajas_alternador_si" name="fajas_alternador" value="Si" class="radio-option">
+                                <label for="fajas_alternador_si">Sí</label>
+                                <input type="radio" id="fajas_alternador_no" name="fajas_alternador" value="No" class="radio-option" checked>
+                                <label for="fajas_alternador_no">No</label>
+                            </div>
+                            <textarea id="comentario_fajas_alternador" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- CAJA PORTA FUSIBLES -->
+                        <div class="item-group" data-item-name="CAJA PORTA FUSIBLES">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">CAJA PORTA FUSIBLES:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="caja_fusibles_si" name="caja_fusibles" value="Si" class="radio-option">
+                                <label for="caja_fusibles_si">Sí</label>
+                                <input type="radio" id="caja_fusibles_no" name="caja_fusibles" value="No" class="radio-option" checked>
+                                <label for="caja_fusibles_no">No</label>
+                            </div>
+                            <textarea id="comentario_caja_fusibles" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- TAPA FILTRO DE AIRE -->
+                        <div class="item-group" data-item-name="TAPA FILTRO DE AIRE">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">TAPA FILTRO DE AIRE:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="tapa_filtro_aire_si" name="tapa_filtro_aire" value="Si" class="radio-option">
+                                <label for="tapa_filtro_aire_si">Sí</label>
+                                <input type="radio" id="tapa_filtro_aire_no" name="tapa_filtro_aire" value="No" class="radio-option" checked>
+                                <label for="tapa_filtro_aire_no">No</label>
+                            </div>
+                            <textarea id="comentario_tapa_filtro_aire" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                        </div>
+
+
+                    </div>  
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                    <h2 class="text-xl font-semibold mb-4">NEUMATICOS</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- MEDIDOR DE AIRE -->
+                    <div class="item-group" data-item-name="MEDIDOR DE AIRE">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">MEDIDOR DE AIRE</label>
+                    <div class="radio-btn">
+                        <input type="radio" id="medidor_aire_si" name="medidor_aire" value="Si" class="radio-option">
+                        <label for="medidor_aire_si">Sí</label>
+                        <input type="radio" id="medidor_aire_no" name="medidor_aire" value="No" class="radio-option" checked>
+                        <label for="medidor_aire_no">No</label>
+                    </div>
+                    <textarea id="comentario_medidor_aire" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- AROS Y PESTAÑAS -->
+                    <div class="item-group" data-item-name="AROS Y PESTAÑAS">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">AROS Y PESTAÑAS</label>
+                    <div class="radio-btn">
+                        <input type="radio" id="aros_si" name="aros" value="Si" class="radio-option">
+                        <label for="aros_si">Sí</label>
+                        <input type="radio" id="aros_no" name="aros" value="No" class="radio-option" checked>
+                        <label for="aros_no">No</label>
+                    </div>
+                    <textarea id="comentario_aros" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- P-1 : COCADA -->
+                    <div class="item-group" data-item-name="P-1 : COCADA">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">P-1 : COCADA</label>
+                    <div class="radio-btn">
+                        <input type="radio" id="p1_si" name="p1" value="Si" class="radio-option">
+                        <label for="p1_si">Sí</label>
+                        <input type="radio" id="p1_no" name="p1" value="No" class="radio-option" checked>
+                        <label for="p1_no">No</label>
+                    </div>
+                    <textarea id="comentario_p1" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- P-2 : COCADA -->
+                    <div class="item-group" data-item-name="P-2 : COCADA">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">P-2 : COCADA</label>
+                    <div class="radio-btn">
+                        <input type="radio" id="p2_si" name="p2" value="Si" class="radio-option">
+                        <label for="p2_si">Sí</label>
+                        <input type="radio" id="p2_no" name="p2" value="No" class="radio-option" checked>
+                        <label for="p2_no">No</label>
+                    </div>
+                    <textarea id="comentario_p2" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- P-3 : COCADA -->
+                    <div class="item-group" data-item-name="P-3 : COCADA">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">P-3 : COCADA</label>
+                    <div class="radio-btn">
+                        <input type="radio" id="p3_si" name="p3" value="Si" class="radio-option">
+                        <label for="p3_si">Sí</label>
+                        <input type="radio" id="p3_no" name="p3" value="No" class="radio-option" checked>
+                        <label for="p3_no">No</label>
+                    </div>
+                    <textarea id="comentario_p3" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- P-4 : COCADA -->
+                    <div class="item-group" data-item-name="P-4 : COCADA">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">P-4 : COCADA</label>
+                    <div class="radio-btn">
+                        <input type="radio" id="p4_si" name="p4" value="Si" class="radio-option">
+                        <label for="p4_si">Sí</label>
+                        <input type="radio" id="p4_no" name="p4" value="No" class="radio-option" checked>
+                        <label for="p4_no">No</label>
+                    </div>
+                    <textarea id="comentario_p4" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- P-5 : COCADA -->
+                    <div class="item-group" data-item-name="P-5 : COCADA">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">P-5 : COCADA</label>
+                    <div class="radio-btn">
+                        <input type="radio" id="p5_si" name="p5" value="Si" class="radio-option">
+                        <label for="p5_si">Sí</label>
+                        <input type="radio" id="p5_no" name="p5" value="No" class="radio-option" checked>
+                        <label for="p5_no">No</label>
+                    </div>
+                    <textarea id="comentario_p5" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- P-6 : COCADA -->
+                    <div class="item-group" data-item-name="P-6 : COCADA">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">P-6 : COCADA</label>
+                    <div class="radio-btn">
+                        <input type="radio" id="p6_si" name="p6" value="Si" class="radio-option">
+                        <label for="p6_si">Sí</label>
+                        <input type="radio" id="p6_no" name="p6" value="No" class="radio-option" checked>
+                        <label for="p6_no">No</label>
+                    </div>
+                    <textarea id="comentario_p6" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- LLANTA DE REPUESTO: MED -->
+                    <div class="item-group" data-item-name="LLANTA DE REPUESTO: MED">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">LLANTA DE REPUESTO: MED</label>
+                    <div class="radio-btn">
+                        <input type="radio" id="llanta_med_si" name="llanta_med" value="Si" class="radio-option">
+                        <label for="llanta_med_si">Sí</label>
+                        <input type="radio" id="llanta_med_no" name="llanta_med" value="No" class="radio-option" checked>
+                        <label for="llanta_med_no">No</label>
+                    </div>
+                    <textarea id="comentario_llanta_med" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- GATA -->
+                    <div class="item-group" data-item-name="GATA">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">GATA</label>
+                    <div class="radio-btn">
+                        <input type="radio" id="gata_si" name="gata" value="Si" class="radio-option">
+                        <label for="gata_si">Sí</label>
+                        <input type="radio" id="gata_no" name="gata" value="No" class="radio-option" checked>
+                        <label for="gata_no">No</label>
+                    </div>
+                    <textarea id="comentario_gata" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- LLAVE DE RUEDAS -->
+                    <div class="item-group" data-item-name="LLAVE DE RUEDAS">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">LLAVE DE RUEDAS</label>
+                    <div class="radio-btn">
+                        <input type="radio" id="llave_ruedas_si" name="llave_ruedas" value="Si" class="radio-option">
+                        <label for="llave_ruedas_si">Sí</label>
+                        <input type="radio" id="llave_ruedas_no" name="llave_ruedas" value="No" class="radio-option" checked>
+                        <label for="llave_ruedas_no">No</label>
+                    </div>
+                    <textarea id="comentario_llave_ruedas" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+                    <!-- TRABA TUERCAS -->
+                    <div class="item-group" data-item-name="TRABA TUERCAS">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">TRABA TUERCAS</label>
+                    <div class="radio-btn">
+                        <input type="radio" id="traba_tuercas_si" name="traba_tuercas" value="Si" class="radio-option">
+                        <label for="traba_tuercas_si">Sí</label>
+                        <input type="radio" id="traba_tuercas_no" name="traba_tuercas" value="No" class="radio-option" checked>
+                        <label for="traba_tuercas_no">No</label>
+                    </div>
+                    <textarea id="comentario_traba_tuercas" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
+                    </div>
+
+
+                    </div>  
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                    <h2 class="text-xl font-semibold mb-4">DISPOSITIVO DE PROTECCION</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- ANTIVUELCO EXTERIOR (Comment only) -->
+                        <div class="item-group" data-item-name="ANTIVUELCO EXTERIOR">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">ANTIVUELCO EXTERIOR:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="antivuelco_ext_si" name="antivuelco_ext" value="Si" class="radio-option">
+                                <label for="antivuelco_ext_si">Sí</label>
+                                <input type="radio" id="antivuelco_ext_no" name="antivuelco_ext" value="No" class="radio-option" checked>
+                                <label for="antivuelco_ext_no">No</label>
+                            </div>
+                            <textarea id="comentario_antivuelco_ext" placeholder="Comentario" class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- JAULA ANTIVUELCO (Comment only) -->
+                        <div class="item-group" data-item-name="JAULA ANTIVUELCO">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">JAULA ANTIVUELCO:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="jaula_antivuelco_si" name="jaula_antivuelco" value="Si" class="radio-option">
+                                <label for="jaula_antivuelco_si">Sí</label>
+                                <input type="radio" id="jaula_antivuelco_no" name="jaula_antivuelco" value="No" class="radio-option" checked>
+                                <label for="jaula_antivuelco_no">No</label>
+                            </div>
+                            <textarea id="comentario_jaula_antivuelco" placeholder="Comentario" class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- LETRERO DE PUNTO CIEGO (Comment only) -->
+                        <div class="item-group" data-item-name="LETRERO DE PUNTO CIEGO">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">LETRERO DE PUNTO CIEGO:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="punto_ciego_si" name="punto_ciego" value="Si" class="radio-option">
+                                <label for="punto_ciego_si">Sí</label>
+                                <input type="radio" id="punto_ciego_no" name="punto_ciego" value="No" class="radio-option" checked>
+                                <label for="punto_ciego_no">No</label>
+                            </div>
+                            <textarea id="comentario_punto_ciego" placeholder="Comentario" class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- LETRERO DE DISTANCIA (Comment only) -->
+                        <div class="item-group" data-item-name="LETRERO DE DISTANCIA">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">LETRERO DE DISTANCIA:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="letrero_distancia_si" name="letrero_distancia" value="Si" class="radio-option">
+                                <label for="letrero_distancia_si">Sí</label>
+                                <input type="radio" id="letrero_distancia_no" name="letrero_distancia" value="No" class="radio-option" checked>
+                                <label for="letrero_distancia_no">No</label>
+                            </div>
+                            <textarea id="comentario_letrero_distancia" placeholder="Comentario" class="w-full border rounded p-1"></textarea>
+                        </div>
+
+                        <!-- LETRERO AEREO (Comment only) -->
+                        <div class="item-group" data-item-name="LETRERO AEREO">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">LETRERO AEREO:</label>
+                            <div class="radio-btn">
+                                <input type="radio" id="letrero_aereo_si" name="letrero_aereo" value="Si" class="radio-option">
+                                <label for="letrero_aereo_si">Sí</label>
+                                <input type="radio" id="letrero_aereo_no" name="letrero_aereo" value="No" class="radio-option" checked>
+                                <label for="letrero_aereo_no">No</label>
+                            </div>
+                            <textarea id="comentario_letrero_aereo" placeholder="Comentario" class="w-full border rounded p-1"></textarea>
+                        </div>
+
+
+                    </div>  
+                </div>
+                
+
+            <!-- Section: Driver Signature -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <div class="flex gap-8">
+                <div class="flex-1">
+                    <h2 class="text-xl font-semibold mb-4">Firma de Ingreso</h2>
+                    <div class="relative">
+                        <canvas id="firmaIngresoCanvas" class="border border-gray-300 rounded-lg w-full h-40 bg-gray-50"></canvas>
+                        <button type="button" id="clearSignatureIngreso" class="btn-secondary absolute top-2 right-2 flex items-center gap-2 bg-white text-gray-700 p-2 rounded-lg shadow-md">
+                            <i class="fa fa-eraser"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <h2 class="text-xl font-semibold mb-4">Firma de Salida</h2>
+                    <div class="relative">
+                        <canvas id="firmaSalidaCanvas" class="border border-gray-300 rounded-lg w-full h-40 bg-gray-50"></canvas>
+                        <button type="button" id="clearSignatureSalida" class="btn-secondary absolute top-2 right-2 flex items-center gap-2 bg-white text-gray-700 p-2 rounded-lg shadow-md">
+                            <i class="fa fa-eraser"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+            
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <div class="radio-btn">
+                <p class="text-xl font-semibold mb-4">Nivel de Combustible</p>
+                <div class="flex flex-wrap gap-2"> <!-- Flex container horizontal -->
+                <div class="radio-item" style="display: flex; justify-content: center; align-items: center;">
+                    <input type="radio" id="nivel1" name="combustible" value="Vacio">
+                    <label for="nivel1">FULL</label>
+                </div>
+                <div class="radio-item">
+                    <input type="radio" id="nivel2" name="combustible" value="1/4 Lleno">
+                    <label for="nivel2">3/4 TANQUE</label>
+                </div>
+                <div class="radio-item">
+                    <input type="radio" id="nivel3" name="combustible" value="1/2 Lleno">
+                    <label for="nivel3">1/2 TANQUE</label>
+                </div>
+                <div class="radio-item">
+                    <input type="radio" id="nivel4" name="combustible" value="3/4 Lleno">
+                    <label for="nivel4">1/4 TANQUE</label>
+                </div>
+                <div class="radio-item">
+                    <input type="radio" id="nivel5" name="combustible" value="Lleno">
+                    <label for="nivel5">RESERVA</label>
+                </div>
+            </div>
+        </div>   
+            <!-- Botón inicial -->
+        <button id="btnGenerarPDF" type="button" class="btn-pdf">Generar PDF</button>
+         </div>
+
+    <canvas id="formularioCanvas" width="800" height="1200"></canvas>
+</body>
+</html>
