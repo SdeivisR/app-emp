@@ -179,8 +179,8 @@ canvas {
   transform: scale(0.97);
 }
 
-/* --- ADAPTACIONES PARA MÓVIL --- */
-@media (max-width: 768px) {
+/* --- ADAPTACIONES PARA MÓVIL (VERTICAL Y HORIZONTAL) --- */
+@media (max-width: 768px) and (orientation: portrait) {
   body {
     padding: 1rem;
     align-items: flex-start; /* Alinea al inicio para no tener espacios grandes */
@@ -204,5 +204,34 @@ canvas {
     padding: 10px 20px;
     font-size: 0.9rem;
     width: 100%; /* Ocupa todo el ancho disponible */
+  }
+}
+
+@media (max-width: 992px) and (orientation: landscape) {
+  body {
+    padding: 1rem;
+    align-items: center;
+    min-height: 100vh; /* Ocupa el 100% del alto para que se vea bien horizontalmente */
+  }
+
+  .container {
+    max-width: 90%;
+    width: auto;
+    margin: 10px auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  canvas {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Ajustar botones para la orientación horizontal */
+  .btn-primary, .btn-secondary, .btn-pdf {
+    width: auto; /* Los botones no ocupan todo el ancho */
+    margin: 10px;
   }
 }
