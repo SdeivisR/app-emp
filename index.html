@@ -21,9 +21,12 @@
   <meta name="theme-color" content="#0f172a">
 
   <!-- Scripts -->
-  <script src="generarPDF.js" defer></script>
-  <script src="script.js" defer></script>
-  <link rel="manifest" href="/manifest.json">
+    <script src="guardarProyecto.js" defer></script>
+    <script src="generarPDF.js" defer></script>
+    <script src="abrirProyecto.js" defer></script>
+    <script src="nuevoChecklist.js" defer></script>
+    <script src="script.js" defer></script>
+    <link rel="manifest" href="/manifest.json">
 
 </head>
 
@@ -37,7 +40,7 @@
         <div id="registroVehiculoForm">
             <!-- Section: Driver and Vehicle Data -->
             <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-                <h2 class="text-xl font-semibold mb-4">Datos del Conductor y Vehículo</h2>
+                <h2 class="text-xl font-semibold mb-4">ENTREGA Y RECEPCION DE EQUIPOS</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label for="placa" class="block text-sm font-medium text-gray-700 mb-1">Placa del Vehículo:</label>
@@ -60,7 +63,7 @@
                         <input type="time" id="hora_ingreso" name="hora_ingreso" class="input-field w-full" required>
                     </div>
                     <div class="mb-4">
-                        <label for="fecha_Salida" class="block text-sm font-medium text-gray-700 mb-1">Fecha de Salida:</label>
+                        <label for="fecha_salida" class="block text-sm font-medium text-gray-700 mb-1">Fecha de Salida:</label>
                         <input type="date" id="fecha_salida" name="fecha_salida" class="input-field w-full" required>
                     </div>
                     <div>
@@ -258,7 +261,7 @@
 
             <!-- Section: Safety Elements and Tools -->
             <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-                <h2 class="text-xl font-semibold mb-4">Elementos de Seguridad y Herramientas</h2>
+                <h2 class="text-xl font-semibold mb-4">DISPOSITIVOS DE SEGURIDAD</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                     <!-- BOTIQUIN (Comment only) -->
@@ -1029,7 +1032,7 @@
                     <h2 class="text-xl font-semibold mb-4">Firma de Ingreso</h2>
                     <div class="relative">
                         <canvas id="firmaIngresoCanvas" class="border border-gray-300 rounded-lg w-full h-40 bg-gray-50"></canvas>
-                        <button type="button" id="clearSignatureIngreso" class="btn-secondary absolute top-2 right-2 flex items-center gap-2 bg-white text-gray-700 p-2 rounded-lg shadow-md">
+                        <button type="button" id="clearSignatureIngreso" class="btn-secondary absolute top-2 right-2 flex items-center gap-2 bg-white text-gray-700 p-2 rounded-lg shadow-md"aria-label="Limpiar firma de Entrada">
                             <i class="fa fa-eraser"></i>
                         </button>
                     </div>
@@ -1038,7 +1041,7 @@
                     <h2 class="text-xl font-semibold mb-4">Firma de Salida</h2>
                     <div class="relative">
                         <canvas id="firmaSalidaCanvas" class="border border-gray-300 rounded-lg w-full h-40 bg-gray-50"></canvas>
-                        <button type="button" id="clearSignatureSalida" class="btn-secondary absolute top-2 right-2 flex items-center gap-2 bg-white text-gray-700 p-2 rounded-lg shadow-md">
+                        <button type="button" id="clearSignatureSalida" class="btn-secondary absolute top-2 right-2 flex items-center gap-2 bg-white text-gray-700 p-2 rounded-lg shadow-md"aria-label="Limpiar firma de Salida">
                             <i class="fa fa-eraser"></i>
                         </button>
                     </div>
@@ -1075,6 +1078,9 @@
         </div>   
             <!-- Botón inicial -->
         <button id="btnGenerarPDF" type="button" class="btn-pdf">Generar PDF</button>
+        <button id="guardarProyectoBtn" type="button" class="btn-pdf">Guardar proyecto</button>
+        <button id="abrirProyectoBtn" type="button" class="btn-pdf">Abrir proyecto</button>
+        <button id="btnNuevoChecklist" type="button" class="btn-pdf">Generar nuevo checklist</button>
          </div>
 
     <canvas id="formularioCanvas" width="800" height="1200"></canvas>

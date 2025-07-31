@@ -72,9 +72,10 @@ canvas {
 
 /* Estilo cuando está seleccionado */
 .radio-btn input[type="radio"]:checked + label {
-  background-color: #6366f1;
+  background-color: #4033a4;
+   box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
   color: white;
-  border-color: #6366f1;
+  border-color: #4033a4;
 }
 .btn-primary {
     background-color: #6366f1; /* Indigo 500 */
@@ -128,34 +129,6 @@ canvas {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-.gemini-output {
-    background-color: #e0f2fe; /* Light blue background */
-    border: 1px solid #90cdf4; /* Blue border */
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 25px;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    white-space: pre-wrap; /* To preserve line breaks and spaces from the LLM */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-.gemini-output h3 {
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #2b6cb0; /* Darker blue */
-}
-
-/* Message Box Styles */
-.message-box {
-    padding: 10px 15px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    animation: fadeInOut 3s forwards;
-    opacity: 0; /* Start hidden */
-}
 
 .message-box.success {
     background-color: #d1fae5; /* Green 100 */
@@ -183,7 +156,7 @@ canvas {
 }
 
 .btn-pdf {
-  background-color: #6366f1; /* Indigo */
+  background-color: #4033a4; /* Indigo */
   color: white;
   padding: 0.75rem 1.5rem;
   border: none;

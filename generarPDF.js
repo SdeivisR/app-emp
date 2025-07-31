@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const hora_ingreso = document.getElementById('hora_ingreso').value;
       const fecha_Salida = document.getElementById('fecha_salida').value;
       const kilometraje = document.getElementById('kilometraje').value;
+      
       //Elementos//
 
       const botiquin_si = document.getElementById("botiquin_si").checked;
@@ -90,7 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const sirena_si = document.getElementById("sirena_si").checked;
       const sirena_no = document.getElementById("sirena_no").checked;
       const c_sirena = document.getElementById("comentario_sirena").value;
-
+      //
+      //Dispositivos de Seguridad//
+      //
       const luces_delanteras_si = document.getElementById("luces_delanteras_si").checked;
       const luces_delanteras_no = document.getElementById("luces_delanteras_no").checked;
       const c_luces_delanteras = document.getElementById("comentario_luces_delanteras").value;
@@ -151,6 +154,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const plumillas_no = document.getElementById("plumillas_no").checked;
       const c_plumillas = document.getElementById("comentario_plumillas").value;
 
+      //
+      //
+      //
+
       const freno_servicio_si = document.getElementById("freno_servicio_si").checked;
       const freno_servicio_no = document.getElementById("freno_servicio_no").checked;
       const c_freno_servicio = document.getElementById("comentario_freno_servicio").value;
@@ -194,7 +201,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const fun_ventanas_si = document.getElementById("fun_ventanas_si").checked;
       const fun_ventanas_no = document.getElementById("fun_ventanas_no").checked;
       const c_fun_ventanas = document.getElementById("comentario_fun_ventanas").value;
-
+      //
+      //
+      //
       const tarjeta_propiedad_si = document.getElementById("tarjeta_propiedad_si").checked;
       const tarjeta_propiedad_no = document.getElementById("tarjeta_propiedad_no").checked;
       const c_tarjeta_propiedad = document.getElementById("comentario_tarjeta_propiedad").value;
@@ -694,15 +703,15 @@ document.addEventListener('DOMContentLoaded', () => {
       else if (letrero_aereo_no) { page.drawText('X', { x: 437, y: 248, size: 16, color: rgb(0, 0, 0) }); }
 
       if (nvl1) {
-        page.drawText('A', { x: 555, y: 62, size: 14, color: rgb(0, 0, 0) });
+        page.drawText('X', { x: 558, y: 64, size: 14, color: rgb(0, 0, 0) });
       } else if (nvl2) {
-        page.drawText('X', { x: 555, y: 52, size: 14, color: rgb(0, 0, 0) });
+        page.drawText('X', { x: 558, y: 52, size: 14, color: rgb(0, 0, 0) });
       } else if (nvl3) {
-        page.drawText('X', { x: 555, y: 41, size: 14, color: rgb(0, 0, 0) });
+        page.drawText('X', { x: 558, y: 40, size: 14, color: rgb(0, 0, 0) });
       } else if (nvl4) {
-        page.drawText('X', { x: 555, y: 31, size: 14, color: rgb(0, 0, 0) });
+        page.drawText('X', { x: 558, y: 28, size: 14, color: rgb(0, 0, 0) });
       } else if (nvl5) {
-        page.drawText('X', { x: 555, y: 18, size: 14, color: rgb(0, 0, 0) });
+        page.drawText('X', { x: 558, y: 16, size: 14, color: rgb(0, 0, 0) });
 }
 
       // Firmas desde canvas

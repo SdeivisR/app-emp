@@ -138,8 +138,3 @@ window.addEventListener('resize', configurarCanvasFirmas);
     }
   }
 
-document.getElementById('btnNuevoChecklist').addEventListener('click', () => {
-  document.getElementById('miFormulario').reset(); // Si tienes un <form id="miFormulario">
-  localStorage.removeItem('datosChecklist'); // Opcional: también borra datos guardados
-  window.scrollTo({ top: 0, behavior: 'smooth' }); // Vuelve al inicio
-});
