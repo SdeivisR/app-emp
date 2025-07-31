@@ -1,4 +1,4 @@
-    /* style.css */
+/* style.css */
 
 body {
   font-family: 'Inter', sans-serif;
@@ -178,4 +178,31 @@ canvas {
 .btn-pdf:active {
   transform: scale(0.97);
 }
+
+/* --- ADAPTACIONES PARA MÓVIL --- */
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+    align-items: flex-start; /* Alinea al inicio para no tener espacios grandes */
+    min-height: auto; /* Permite que el cuerpo no ocupe todo el alto */
+  }
+
+  .container {
+    max-width: 95%;
+    width: 100%;
+    margin: 10px auto;
+    padding: 20px;
+  }
   
+  canvas {
+    max-width: 100%;
+    height: auto; /* Permite que el alto se ajuste */
+  }
+
+  /* Reducir el padding de los botones para que no sean tan grandes en móviles */
+  .btn-primary, .btn-secondary, .btn-pdf {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    width: 100%; /* Ocupa todo el ancho disponible */
+  }
+}
