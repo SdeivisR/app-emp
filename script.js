@@ -138,3 +138,7 @@ window.addEventListener('resize', configurarCanvasFirmas);
     }
   }
 
+document.getElementById('mainFabBtn').addEventListener('click', function() {
+  const container = document.querySelector('.fab-container');
+  container.classList.toggle('open');
+});

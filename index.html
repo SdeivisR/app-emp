@@ -1,41 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulario de Ingreso de Vehículos</title>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Ingreso de Vehículos</title>
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Fuente Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fuente Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Estilos personalizados -->
-  <link rel="stylesheet" href="style.css">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="style.css">
 
-  <!-- PDF-lib -->
-  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <!-- PDF-lib -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 
-  <!-- Tema -->
-  <meta name="theme-color" content="#0f172a">
+    <!-- Tema -->
+    <meta name="theme-color" content="#0f172a">
 
-  <!-- Scripts -->
-    <script src="guardarProyecto.js" defer></script>
-    <script src="generarPDF.js" defer></script>
-    <script src="abrirProyecto.js" defer></script>
-    <script src="nuevoChecklist.js" defer></script>
-    <script src="script.js" defer></script>
-    <link rel="manifest" href="/manifest.json">
+    <!-- Scripts -->
+        <script src="guardarProyecto.js" defer></script>
+        <script src="generarPDF.js" defer></script>
+        <script src="abrirProyecto.js" defer></script>
+        <script src="nuevoChecklist.js" defer></script>
+        <script src="script.js" defer></script>
+        <link rel="manifest" href="/manifest.json">
 
-</head>
+    </head>
 
-<body>
-    <div class="container">
-        <h1 class="text-2xl font-bold mb-6 text-center">Registro de Ingreso de Vehículos</h1>
+        <body>
+            <div class="container">
+                <h1 class="text-2xl font-bold mb-6 text-center">Registro de Ingreso de Vehículos</h1>
+            </div>
 
-        <!-- Container for notification messages -->
+            <div class="fab-container">
+                    <div class="fab-buttons">
+                        <button id="btnGenerarPDF" type="button" class="btn-floating-item">
+                            <span class="sr-only">Generar PDF</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text">
+                                <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/>
+                                <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
+                                <path d="M10 9H8"/>
+                                <path d="M16 13H8"/>
+                                <path d="M16 17H8"/>
+                            </svg>
+                        </button>
+                        <button id="guardarProyectoBtn" type="button" class="btn-floating-item">
+                            <span class="sr-only">Guardar proyecto</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-save">
+                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                                <path d="M17 21v-8H7v8"/>
+                                <path d="M7 3v4a2 2 0 0 0 2 2h4"/>
+                            </svg>
+                        </button>
+                        <button id="btnNuevoChecklist" type="button" class="btn-floating-item">
+                            <span class="sr-only">Generar nuevo checklist</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-plus">
+                                <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
+                                <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
+                                <path d="M12 18v-6"/>
+                                <path d="M9 15h6"/>
+                            </svg>
+                        </button>
+                        <button id="abrirProyectoBtn" type="button" class="btn-floating-item">
+                            <span class="sr-only">Abrir proyecto</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder-open">
+                                <path d="M6 14H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2l2 3h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6z"/>
+                                <path d="M2 14v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <button id="mainFabBtn" class="btn-floating">
+                        <span class="sr-only">Menú</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+                            <path d="M5 12h14"/>
+                            <path d="M12 5v14"/>
+                        </svg>
+                    </button>
+                </div>
+
         <div id="message-container" class="fixed top-4 right-4 z-50"></div>
+    </body>
 
         <div id="registroVehiculoForm">
             <!-- Section: Driver and Vehicle Data -->
@@ -1076,11 +1123,6 @@
                 </div>
             </div>
         </div>   
-            <!-- Botón inicial -->
-        <button id="btnGenerarPDF" type="button" class="btn-pdf">Generar PDF</button>
-        <button id="guardarProyectoBtn" type="button" class="btn-pdf">Guardar proyecto</button>
-        <button id="abrirProyectoBtn" type="button" class="btn-pdf">Abrir proyecto</button>
-        <button id="btnNuevoChecklist" type="button" class="btn-pdf">Generar nuevo checklist</button>
          </div>
 
     <canvas id="formularioCanvas" width="800" height="1200"></canvas>

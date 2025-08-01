@@ -1,62 +1,67 @@
 /* style.css */
 
+/* --- Estilos base y de tipografía --- */
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #f3f4f6; /* gris claro */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: #f3f4f6;
   min-height: 100vh;
   padding: 2rem;
   margin: 0;
 }
+
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+}
+
+/* --- Estilos de formularios y controles --- */
 canvas {
   background-color: white !important;
   border: 1px solid #ccc;
   border-radius: 0.5rem;
 }
+
 #formularioCanvas {
   display: none;
 }
 
-
-.container {
-    max-width: 900px;
-    margin: 20px auto;
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e0e0e0;
-}
 .input-field {
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    padding: 10px 12px;
-    font-size: 1rem;
-    transition: border-color 0.2s, box-shadow 0.2s;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
+
 .input-field:focus {
-    outline: none;
-    border-color: #6366f1; /* Indigo 500 */
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2); /* Indigo 500 with transparency */
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
 }
+
 .radio-option {
-    accent-color: #6366f1; /* Color for radio buttons */
-    transform: scale(1.2); /* Makes radio buttons slightly larger */
-    margin-right: 5px;
+  accent-color: #6366f1;
+  transform: scale(1.2);
+  margin-right: 5px;
 }
+
 .item-group {
-    background-color: #f9fafb; /* A slightly different background for each group */
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid #e5e7eb;
-    margin-bottom: 15px;
+  background-color: #f9fafb;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 15px;
 }
+
 .radio-btn input[type="radio"] {
   display: none;
 }
-/* Estilo del botón visual */
+
 .radio-btn label {
   display: inline-block;
   padding: 0.5rem 1rem;
@@ -70,104 +75,71 @@ canvas {
   transition: all 0.3s ease;
 }
 
-/* Estilo cuando está seleccionado */
 .radio-btn input[type="radio"]:checked + label {
   background-color: #4033a4;
-   box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
   color: white;
   border-color: #4033a4;
 }
+
+/* --- Estilos de botones generales --- */
 .btn-primary {
-    background-color: #6366f1; /* Indigo 500 */
-    color: white;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: background-color 0.2s, transform 0.2s;
-    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+  background-color: #6366f1;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.2s;
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
+
 .btn-primary:hover {
-    background-color: #4f46e5; /* Indigo 600 */
-    transform: translateY(-2px);
+  background-color: #4f46e5;
+  transform: translateY(-2px);
 }
+
 .btn-primary:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 5px rgba(99, 102, 241, 0.3);
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(99, 102, 241, 0.3);
 }
 
 .btn-secondary {
-    background-color: #e2e8f0; /* Gray 200 */
-    color: #4a5568; /* Gray 700 */
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: background-color 0.2s, transform 0.2s;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #e2e8f0;
+  color: #4a5568;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background-color 0.2s, transform 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 .btn-secondary:hover {
-    background-color: #cbd5e0; /* Gray 300 */
-    transform: translateY(-1px);
+  background-color: #cbd5e0;
+  transform: translateY(-1px);
 }
+
 .btn-secondary:active {
-    transform: translateY(0);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.loading-spinner {
-    border: 4px solid rgba(255, 255, 255, 0.3);
-    border-top: 4px solid #fff;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    animation: spin 1s linear infinite;
-}
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.message-box.success {
-    background-color: #d1fae5; /* Green 100 */
-    color: #065f46; /* Green 800 */
-    border: 1px solid #34d399; /* Green 400 */
-}
-
-.message-box.error {
-    background-color: #fee2e2; /* Red 100 */
-    color: #991b1b; /* Red 800 */
-    border: 1px solid #ef4444; /* Red 400 */
-}
-
-.message-box.info {
-    background-color: #e0f2fe; /* Blue 100 */
-    color: #1e40af; /* Blue 800 */
-    border: 1px solid #60a5fa; /* Blue 400 */
-}
-
-@keyframes fadeInOut {
-    0% { opacity: 0; transform: translateY(-20px); }
-    10% { opacity: 1; transform: translateY(0); }
-    90% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(-20px); }
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .btn-pdf {
-  background-color: #4033a4; /* Indigo */
+  background-color: #4033a4;
   color: white;
   padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 9999px; /* Totalmente redondeado */
+  border-radius: 9999px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
   display: block;
-  margin: 2rem auto; /* centrado con margen vertical */
+  margin: 2rem auto;
 }
 
 .btn-pdf:hover {
@@ -179,12 +151,135 @@ canvas {
   transform: scale(0.97);
 }
 
+/* --- Clases para botones flotantes (FAB) --- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.fab-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.btn-floating,
+.btn-floating-item {
+  background-color: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.btn-floating {
+  width: 56px;
+  height: 56px;
+}
+
+.btn-floating:hover {
+  background-color: #4f46e5;
+  transform: rotate(45deg);
+}
+
+.btn-floating-item {
+  width: 48px;
+  height: 48px;
+  margin-top: 10px;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(0);
+}
+
+.btn-floating svg,
+.btn-floating-item svg {
+  width: 24px;
+  height: 24px;
+}
+
+.fab-container.open .btn-floating-item {
+  visibility: visible;
+  opacity: 1;
+}
+
+.fab-container.open .btn-floating-item:nth-child(1) {
+  transform: translateY(-5px);
+}
+
+.fab-container.open .btn-floating-item:nth-child(2) {
+  transform: translateY(-10px);
+}
+
+.fab-container.open .btn-floating-item:nth-child(3) {
+  transform: translateY(-15px);
+}
+
+.fab-container.open .btn-floating-item:nth-child(4) {
+  transform: translateY(-20px);
+}
+
+/* --- Animaciones y mensajes de estado --- */
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #fff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.message-box.success {
+  background-color: #d1fae5;
+  color: #065f46;
+  border: 1px solid #34d399;
+}
+
+.message-box.error {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #ef4444;
+}
+
+.message-box.info {
+  background-color: #e0f2fe;
+  color: #1e40af;
+  border: 1px solid #60a5fa;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-20px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
 /* --- ADAPTACIONES PARA MÓVIL (VERTICAL Y HORIZONTAL) --- */
 @media (max-width: 768px) and (orientation: portrait) {
   body {
     padding: 1rem;
-    align-items: flex-start; /* Alinea al inicio para no tener espacios grandes */
-    min-height: auto; /* Permite que el cuerpo no ocupe todo el alto */
+    /* align-items: flex-start;  <- Eliminar esta línea */
+    min-height: auto;
   }
 
   .container {
@@ -196,22 +291,21 @@ canvas {
   
   canvas {
     max-width: 100%;
-    height: auto; /* Permite que el alto se ajuste */
+    height: auto;
   }
 
-  /* Reducir el padding de los botones para que no sean tan grandes en móviles */
   .btn-primary, .btn-secondary, .btn-pdf {
     padding: 10px 20px;
     font-size: 0.9rem;
-    width: 100%; /* Ocupa todo el ancho disponible */
+    width: 100%;
   }
 }
 
 @media (max-width: 992px) and (orientation: landscape) {
   body {
     padding: 1rem;
-    align-items: center;
-    min-height: 100vh; /* Ocupa el 100% del alto para que se vea bien horizontalmente */
+    /* align-items: center; <- ELIMINAR ESTA LÍNEA */
+    min-height: 100vh;
   }
 
   .container {
@@ -229,9 +323,8 @@ canvas {
     height: auto;
   }
   
-  /* Ajustar botones para la orientación horizontal */
   .btn-primary, .btn-secondary, .btn-pdf {
-    width: auto; /* Los botones no ocupan todo el ancho */
+    width: auto;
     margin: 10px;
   }
 }
