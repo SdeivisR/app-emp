@@ -1,9 +1,14 @@
 document.getElementById("abrirProyectoBtn").addEventListener("click", function () {
+
+
+
     // 1. Crea un input de tipo 'file' dinámicamente y lo "clica"
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = '.json'; // Acepta solo archivos .json
     input.style.display = 'none';
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
 
     // 2. Escucha el evento 'change' cuando el usuario selecciona un archivo
     input.addEventListener('change', function (event) {
@@ -24,6 +29,8 @@ document.getElementById("abrirProyectoBtn").addEventListener("click", function (
 
                 // Opcional: muestra un mensaje de éxito
                 showNotification("Proyecto cargado correctamente.", "success");
+                
+
 
             } catch (error) {
                 // Opcional: muestra un mensaje de error si el archivo no es un JSON válido
