@@ -739,6 +739,14 @@ document.addEventListener('DOMContentLoaded', () => {
       window.open(url, '_blank');
     } catch (error) {
       console.error("Error al generar PDF:", error);
+      // ... dentro del setTimeout ...
+      if (pdfGeneradoExitosamente) {
+          mostrarMensaje('success', '¡PDF generado con éxito!');
+      } else {
+          mostrarMensaje('error', 'Ocurrió un error al generar el PDF. Inténtalo de nuevo.');
+      }
+
     }
   });
 });
+

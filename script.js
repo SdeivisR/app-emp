@@ -167,3 +167,48 @@ document.getElementById('mainFabBtn').addEventListener('click', function() {
             clearSignatureSalidaBtn.disabled = true;
         }
     });
+document.getElementById('btnGenerarPDF').addEventListener('click', function() {
+    const btn = this;
+    const btnText = document.getElementById('btn-text');
+    const spinner = document.getElementById('loading-spinner');
+
+    // Paso 1: Antes de generar el PDF, muestra el spinner
+    btnText.style.display = 'none';
+    spinner.style.display = 'block';
+    btn.disabled = true; // Deshabilita el botón para evitar clics múltiples
+
+    // ... Aquí iría tu código para generar el PDF ...
+    // Simulación de una tarea que tarda 2 segundos
+    setTimeout(() => {
+        // Paso 2: Después de generar el PDF, oculta el spinner
+        btnText.style.display = 'block';
+        spinner.style.display = 'none';
+        btn.disabled = false; // Vuelve a habilitar el botón
+
+        // Llama a la función que muestra el mensaje de éxito o error
+        mostrarMensaje('success', '¡PDF generado con éxito!');
+    }, 2000); // 2 segundos
+});
+// Función para mostrar mensajes de feedback
+function mostrarMensaje(tipo, texto) {
+    const mensajeFeedback = document.getElementById('mensaje-feedback');
+
+    // Limpia las clases previas
+    mensajeFeedback.classList.remove('success', 'error', 'info');
+
+    // Asigna la clase y el texto correctos
+    mensajeFeedback.classList.add(tipo);
+    mensajeFeedback.textContent = texto;
+
+    mensajeFeedback.style.display = 'block';
+    mensajeFeedback.style.animation = 'fadeInOut 5s forwards'; // Muestra por 5 segundos
+
+    // Oculta el mensaje después de la animación
+    setTimeout(() => {
+        if (pdfGeneradoExitosamente) {
+            mostrarMensaje('success', '¡PDF generado con éxito!');
+        } else {
+            mostrarMensaje('error', 'Ocurrió un error al generar el PDF. Inténtalo de nuevo.');
+        }
+    }, 5000);
+}
