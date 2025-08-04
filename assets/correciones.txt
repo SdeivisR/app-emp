@@ -1,3 +1,0 @@
--campo para el tipo de combustible en la zona del titulo
-- añadir hora al guardar 
--condiciones para las fechas y firmas 

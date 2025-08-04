@@ -8,6 +8,69 @@ document.getElementById("guardarProyectoBtn").addEventListener("click", function
     hora_ingreso: document.getElementById("hora_ingreso").value,
     fecha_salida: document.getElementById("fecha_salida").value,
     kilometraje: document.getElementById("kilometraje").value,
+    tipo_combustible: document.getElementById("tipo_combustible").value,
+    //
+    // Componentes Principales
+    //
+    luces_delanteras_si: document.getElementById("luces_delanteras_si").checked,
+    luces_delanteras_no: document.getElementById("luces_delanteras_no").checked,
+    comentario_luces_delanteras: document.getElementById("comentario_luces_delanteras").value,
+
+    neblineros_si: document.getElementById("neblineros_si").checked,
+    neblineros_no: document.getElementById("neblineros_no").checked,
+    comentario_neblineros: document.getElementById("comentario_neblineros").value,
+
+    direccionales_si: document.getElementById("direccionales_si").checked,
+    direccionales_no: document.getElementById("direccionales_no").checked,
+    comentario_direccionales: document.getElementById("comentario_direccionales").value,
+
+    luces_salon_si: document.getElementById("luces_salon_si").checked,
+    luces_salon_no: document.getElementById("luces_salon_no").checked,
+    comentario_luces_salon: document.getElementById("comentario_luces_salon").value,
+
+    luces_emergencia_si: document.getElementById("luces_emergencia_si").checked,
+    luces_emergencia_no: document.getElementById("luces_emergencia_no").checked,
+    comentario_luces_emergencia: document.getElementById("comentario_luces_emergencia").value,
+
+    claxon_si: document.getElementById("claxon_si").checked,
+    claxon_no: document.getElementById("claxon_no").checked,
+    comentario_claxon: document.getElementById("comentario_claxon").value,
+
+    luces_freno_si: document.getElementById("luces_freno_si").checked,
+    luces_freno_no: document.getElementById("luces_freno_no").checked,
+    comentario_luces_freno: document.getElementById("comentario_luces_freno").value,
+
+    luces_posteriores_si: document.getElementById("luces_posteriores_si").checked,
+    luces_posteriores_no: document.getElementById("luces_posteriores_no").checked,
+    comentario_luces_posteriores: document.getElementById("comentario_luces_posteriores").value,
+
+    faro_pirata_si: document.getElementById("faro_pirata_si").checked,
+    faro_pirata_no: document.getElementById("faro_pirata_no").checked,
+    comentario_faro_pirata: document.getElementById("comentario_faro_pirata").value,
+
+    alarma_retroceso_si: document.getElementById("alarma_retroceso_si").checked,
+    alarma_retroceso_no: document.getElementById("alarma_retroceso_no").checked,
+    comentario_alarma_retroceso: document.getElementById("comentario_alarma_retroceso").value,
+
+    limpia_parabrisas_si: document.getElementById("limpia_parabrisas_si").checked,
+    limpia_parabrisas_no: document.getElementById("limpia_parabrisas_no").checked,
+    comentario_limpia_parabrisas: document.getElementById("comentario_limpia_parabrisas").value,
+
+    espejos_retrovisores_si: document.getElementById("espejos_retrovisores_si").checked,
+    espejos_retrovisores_no: document.getElementById("espejos_retrovisores_no").checked,
+    comentario_espejos_retrovisores: document.getElementById("comentario_espejos_retrovisores").value,
+
+    ventanas_laterales_si: document.getElementById("ventanas_laterales_si").checked,
+    ventanas_laterales_no: document.getElementById("ventanas_laterales_no").checked,
+    comentario_ventanas_laterales: document.getElementById("comentario_ventanas_laterales").value,
+
+    testigos_panel_si: document.getElementById("testigos_panel_si").checked,
+    testigos_panel_no: document.getElementById("testigos_panel_no").checked,
+    comentario_testigos_panel: document.getElementById("comentario_testigos_panel").value,
+
+    plumillas_si: document.getElementById("plumillas_si").checked,
+    plumillas_no: document.getElementById("plumillas_no").checked,
+    comentario_plumillas: document.getElementById("comentario_plumillas").value,
     //
     //Elementos//
     //
@@ -85,68 +148,6 @@ document.getElementById("guardarProyectoBtn").addEventListener("click", function
     sirena_si: document.getElementById("sirena_si").checked,
     sirena_no: document.getElementById("sirena_no").checked,
     comentario_sirena: document.getElementById("comentario_sirena").value,
-    //
-    // Componentes Principales
-    //
-    luces_delanteras_si: document.getElementById("luces_delanteras_si").checked,
-    luces_delanteras_no: document.getElementById("luces_delanteras_no").checked,
-    comentario_luces_delanteras: document.getElementById("comentario_luces_delanteras").value,
-
-    neblineros_si: document.getElementById("neblineros_si").checked,
-    neblineros_no: document.getElementById("neblineros_no").checked,
-    comentario_neblineros: document.getElementById("comentario_neblineros").value,
-
-    direccionales_si: document.getElementById("direccionales_si").checked,
-    direccionales_no: document.getElementById("direccionales_no").checked,
-    comentario_direccionales: document.getElementById("comentario_direccionales").value,
-
-    luces_salon_si: document.getElementById("luces_salon_si").checked,
-    luces_salon_no: document.getElementById("luces_salon_no").checked,
-    comentario_luces_salon: document.getElementById("comentario_luces_salon").value,
-
-    luces_emergencia_si: document.getElementById("luces_emergencia_si").checked,
-    luces_emergencia_no: document.getElementById("luces_emergencia_no").checked,
-    comentario_luces_emergencia: document.getElementById("comentario_luces_emergencia").value,
-
-    claxon_si: document.getElementById("claxon_si").checked,
-    claxon_no: document.getElementById("claxon_no").checked,
-    comentario_claxon: document.getElementById("comentario_claxon").value,
-
-    luces_freno_si: document.getElementById("luces_freno_si").checked,
-    luces_freno_no: document.getElementById("luces_freno_no").checked,
-    comentario_luces_freno: document.getElementById("comentario_luces_freno").value,
-
-    luces_posteriores_si: document.getElementById("luces_posteriores_si").checked,
-    luces_posteriores_no: document.getElementById("luces_posteriores_no").checked,
-    comentario_luces_posteriores: document.getElementById("comentario_luces_posteriores").value,
-
-    faro_pirata_si: document.getElementById("faro_pirata_si").checked,
-    faro_pirata_no: document.getElementById("faro_pirata_no").checked,
-    comentario_faro_pirata: document.getElementById("comentario_faro_pirata").value,
-
-    alarma_retroceso_si: document.getElementById("alarma_retroceso_si").checked,
-    alarma_retroceso_no: document.getElementById("alarma_retroceso_no").checked,
-    comentario_alarma_retroceso: document.getElementById("comentario_alarma_retroceso").value,
-
-    limpia_parabrisas_si: document.getElementById("limpia_parabrisas_si").checked,
-    limpia_parabrisas_no: document.getElementById("limpia_parabrisas_no").checked,
-    comentario_limpia_parabrisas: document.getElementById("comentario_limpia_parabrisas").value,
-
-    espejos_retrovisores_si: document.getElementById("espejos_retrovisores_si").checked,
-    espejos_retrovisores_no: document.getElementById("espejos_retrovisores_no").checked,
-    comentario_espejos_retrovisores: document.getElementById("comentario_espejos_retrovisores").value,
-
-    ventanas_laterales_si: document.getElementById("ventanas_laterales_si").checked,
-    ventanas_laterales_no: document.getElementById("ventanas_laterales_no").checked,
-    comentario_ventanas_laterales: document.getElementById("comentario_ventanas_laterales").value,
-
-    testigos_panel_si: document.getElementById("testigos_panel_si").checked,
-    testigos_panel_no: document.getElementById("testigos_panel_no").checked,
-    comentario_testigos_panel: document.getElementById("comentario_testigos_panel").value,
-
-    plumillas_si: document.getElementById("plumillas_si").checked,
-    plumillas_no: document.getElementById("plumillas_no").checked,
-    comentario_plumillas: document.getElementById("comentario_plumillas").value,
     //
     // Prueba de Motor en marcha
     //
@@ -341,6 +342,6 @@ document.getElementById("guardarProyectoBtn").addEventListener("click", function
 
   const a = document.createElement("a");
   a.href = url;
-  a.download = `CLS_${datosFormulario.placa}_${datosFormulario.fecha_ingreso}.json`;  // Nombre del archivo
+  a.download = `CLS_${datosFormulario.placa}_${datosFormulario.fecha_ingreso}_${datosFormulario.hora_ingreso}.json`;  // Nombre del archivo
   a.click();
 });

@@ -142,3 +142,28 @@ document.getElementById('mainFabBtn').addEventListener('click', function() {
   const container = document.querySelector('.fab-container');
   container.classList.toggle('open');
 });
+
+    const fechaIngresoInput = document.getElementById("fecha_ingreso");
+    const fechaSalidaInput = document.getElementById("fecha_salida");
+
+    fechaIngresoInput.addEventListener("change", () => {
+        const fechaIngreso = fechaIngresoInput.value;
+        fechaSalidaInput.min = fechaIngreso; // No se podrá elegir una fecha anterior
+        if (fechaSalidaInput.value < fechaIngreso) {
+            fechaSalidaInput.value = ""; // Limpia si ya estaba una fecha inválida
+        }
+    });
+
+    const clearSignatureSalidaBtn = document.getElementById("clearSignatureSalida");
+
+    fechaSalidaInput.addEventListener("change", () => {
+        if (fechaSalidaInput.value) {
+            firmaSalidaCanvas.style.pointerEvents = "auto";
+            firmaSalidaCanvas.style.opacity = "1";
+            clearSignatureSalidaBtn.disabled = false;
+        } else {
+            firmaSalidaCanvas.style.pointerEvents = "none";
+            firmaSalidaCanvas.style.opacity = "0.5";
+            clearSignatureSalidaBtn.disabled = true;
+        }
+    });

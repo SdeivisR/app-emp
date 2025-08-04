@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   boton.addEventListener('click', async () => {
     try {
-      const { PDFDocument, rgb, StandardFonts } = PDFLib;
+      const { PDFDocument, rgb,} = PDFLib;
 
       const pdfDoc = await PDFDocument.create();
 
@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const hora_ingreso = document.getElementById('hora_ingreso').value;
       const fecha_Salida = document.getElementById('fecha_salida').value;
       const kilometraje = document.getElementById('kilometraje').value;
+      const t_combustible = document.getElementById('tipo_combustible').value
       
       //Elementos//
 
@@ -357,6 +358,8 @@ document.addEventListener('DOMContentLoaded', () => {
       page.drawText(`${hora_ingreso}`, {x: 452,y: 760,size: 11,color: rgb(0, 0, 0),});  
       page.drawText(`${fecha_Salida}`, {x: 452,y: 790,size: 11,color: rgb(0, 0, 0),});
       page.drawText(`${kilometraje}`, {x: 452,y: 775,size: 11,color: rgb(0, 0, 0),});
+      page.drawText(`${t_combustible}`, {x: 526, y: 78, size: 8, color: rgb(0, 0, 0),});
+
 
       // Elementos
       page.drawText(`${c_botiquin}`, {x:190,y: 491,size: 10,color: rgb(0, 0, 0),});

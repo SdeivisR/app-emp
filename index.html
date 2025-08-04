@@ -117,6 +117,17 @@
                         <label for="kilometraje" class="block text-sm font-medium text-gray-700 mb-1">Kilometraje:</label>
                         <input type="number" id="kilometraje" name="kilometraje" class="input-field w-full" min="0" required>
                     </div>
+                    <div>
+                        <label for="tipo_combustible" class="block text-sm font-medium text-gray-700 mb-1">Tipo de combustible:</label>
+                        <select id="tipo_combustible" name="tipo_combustible" class="input-field w-full" required>
+                            <option value="" disabled selected>Selecciona una opción</option>
+                            <option value="Gasohol 90">Gasohol 90 (Regular)</option>
+                            <option value="Gasohol 95">Gasohol 95 (Premium)</option>
+                            <option value="Gasohol 97">Gasohol 97 (Súper)</option>
+                            <option value="Diésel B5">Diésel B5</option>
+                            <option value="GLP">GLP (Gas Licuado de Petróleo)</option>
+                            <option value="GNV">GNV (Gas Natural Vehicular)</option>
+                        </select>
                 </div>
             </div>
 
@@ -1087,8 +1098,8 @@
                 <div class="flex-1">
                     <h2 class="text-xl font-semibold mb-4">Firma de Salida</h2>
                     <div class="relative">
-                        <canvas id="firmaSalidaCanvas" class="border border-gray-300 rounded-lg w-full h-40 bg-gray-50"></canvas>
-                        <button type="button" id="clearSignatureSalida" class="btn-secondary absolute top-2 right-2 flex items-center gap-2 bg-white text-gray-700 p-2 rounded-lg shadow-md"aria-label="Limpiar firma de Salida">
+                        <canvas id="firmaSalidaCanvas" class="border border-gray-300 rounded-lg w-full h-40 bg-gray-50" style="pointer-events: none; opacity: 0.5;"></canvas>
+                        <button type="button" id="clearSignatureSalida" disabled class="btn-secondary absolute top-2 right-2 flex items-center gap-2 bg-white text-gray-700 p-2 rounded-lg shadow-md"aria-label="Limpiar firma de Salida">
                             <i class="fa fa-eraser"></i>
                         </button>
                     </div>

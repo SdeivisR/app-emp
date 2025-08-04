@@ -8,6 +8,12 @@ document.getElementById("btnNuevoChecklist").addEventListener("click", () => {
       input.value = "";
     }
   });
+  // Limpiar select
+  const selects = document.querySelectorAll("select");
+  selects.forEach(select => {
+    select.selectedIndex = 0;
+  });
+
 
   // Limpiar canvas de firmas
   ["firmaIngresoCanvas", "firmaSalidaCanvas"].forEach(id => {
