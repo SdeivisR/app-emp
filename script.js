@@ -177,7 +177,6 @@ document.getElementById('btnGenerarPDF').addEventListener('click', function() {
     spinner.style.display = 'block';
     btn.disabled = true; // Deshabilita el botón para evitar clics múltiples
 
-    // ... Aquí iría tu código para generar el PDF ...
     // Simulación de una tarea que tarda 2 segundos
     setTimeout(() => {
         // Paso 2: Después de generar el PDF, oculta el spinner
@@ -186,9 +185,17 @@ document.getElementById('btnGenerarPDF').addEventListener('click', function() {
         btn.disabled = false; // Vuelve a habilitar el botón
 
         // Llama a la función que muestra el mensaje de éxito o error
-        mostrarMensaje('success', '¡PDF generado con éxito!');
+        // Aquí deberías poner la condición de si fue exitoso o no
+        const pdfGeneradoExitosamente = true; // Cambia esto con tu lógica real
+
+        if (pdfGeneradoExitosamente) {
+            mostrarMensaje('success', '¡PDF generado con éxito!');
+        } else {
+            mostrarMensaje('error', 'Ocurrió un error al generar el PDF. Inténtalo de nuevo.');
+        }
     }, 2000); // 2 segundos
 });
+
 // Función para mostrar mensajes de feedback
 function mostrarMensaje(tipo, texto) {
     const mensajeFeedback = document.getElementById('mensaje-feedback');
@@ -200,15 +207,16 @@ function mostrarMensaje(tipo, texto) {
     mensajeFeedback.classList.add(tipo);
     mensajeFeedback.textContent = texto;
 
+    // Asegúrate de que el mensaje se muestre
     mensajeFeedback.style.display = 'block';
-    mensajeFeedback.style.animation = 'fadeInOut 5s forwards'; // Muestra por 5 segundos
+    // Reinicia la animación para que se active cada vez
+    mensajeFeedback.style.animation = 'none';
+    // Pequeño truco para reiniciar la animación
+    mensajeFeedback.offsetHeight; 
+    mensajeFeedback.style.animation = 'fadeInOut 5s forwards';
 
-    // Oculta el mensaje después de la animación
+    // Oculta el mensaje después de la animación (5 segundos)
     setTimeout(() => {
-        if (pdfGeneradoExitosamente) {
-            mostrarMensaje('success', '¡PDF generado con éxito!');
-        } else {
-            mostrarMensaje('error', 'Ocurrió un error al generar el PDF. Inténtalo de nuevo.');
-        }
+        mensajeFeedback.style.display = 'none';
     }, 5000);
 }

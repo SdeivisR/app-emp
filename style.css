@@ -40,12 +40,12 @@ canvas {
 
 .input-field:focus {
   outline: none;
-  border-color: #6366f1;
+  border-color: #4c5cd8;
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
 }
 
 .radio-option {
-  accent-color: #6366f1;
+  accent-color: #4c5cd8;
   transform: scale(1.2);
   margin-right: 5px;
 }
@@ -76,15 +76,15 @@ canvas {
 }
 
 .radio-btn input[type="radio"]:checked + label {
-  background-color: #4033a4;
+  background-color: #4c5cd8;
   box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
   color: white;
-  border-color: #4033a4;
+  border-color: #4c5cd8;
 }
 
 /* --- Estilos de botones generales --- */
 .btn-primary {
-  background-color: #6366f1;
+  background-color: #4c5cd8;
   color: white;
   padding: 12px 25px;
   border-radius: 8px;
@@ -98,7 +98,7 @@ canvas {
 }
 
 .btn-primary:hover {
-  background-color: #4f46e5;
+  background-color: #4c5cd8;
   transform: translateY(-2px);
 }
 
@@ -128,7 +128,7 @@ canvas {
 }
 
 .btn-pdf:hover {
-  background-color: #4f46e5;
+  background-color: #4c5cd8;
   transform: scale(1.03);
 }
 
@@ -173,7 +173,7 @@ canvas {
 }
 
 .btn-floating-item {
-  background-color: #6366f1;
+  background-color: #4c5cd8;
   color: white;
   border: none;
   border-radius: 50%;
@@ -191,7 +191,7 @@ canvas {
 }
 
 .btn-floating:hover {
-  background-color: #4f46e5;
+  background-color: #4c5cd8;
   transform: rotate(45deg);
 }
 
