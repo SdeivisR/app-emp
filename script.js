@@ -247,3 +247,15 @@ function validarCampo(id, mensajeError = "Este campo es obligatorio") {
     return true;
   }
 }
+function activarCorreccionCampo(id) {
+  const input = document.getElementById(id);
+  const errorDiv = document.getElementById("error-" + id);
+
+  input.addEventListener("input", () => {
+    if (input.value.trim() !== "") {
+      input.classList.remove("input-error");
+      if (errorDiv) errorDiv.textContent = "";
+    }
+  });
+}
+

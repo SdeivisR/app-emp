@@ -16,18 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const kilometraje = document.getElementById('kilometraje').value;
       const t_combustible = document.getElementById('tipo_combustible').value;
 
-      const camposValidos = [
-        validarCampo("placa"),
-        validarCampo("empresa"),
-        validarCampo("conductor"),
-        validarCampo("fecha_ingreso"),
-        validarCampo("hora_ingreso"),
-        validarCampo("kilometraje")
-      ];
+      const camposAValidar = ["placa", "empresa", "conductor", "fecha_ingreso", "hora_ingreso", "kilometraje"];
+      camposAValidar.forEach(id => activarCorreccionCampo(id)); // activa eventos para restaurar estilo
+
+      const camposValidos = camposAValidar.map(id => validarCampo(id));
 
       if (camposValidos.includes(false)) {
-        return; // Detiene la ejecución si falta algún campo
-      }
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+}
+
+      
 
       
       //Elementos//
