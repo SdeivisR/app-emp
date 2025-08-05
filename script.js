@@ -156,17 +156,29 @@ document.getElementById('mainFabBtn').addEventListener('click', function() {
 
     const clearSignatureSalidaBtn = document.getElementById("clearSignatureSalida");
 
-    fechaSalidaInput.addEventListener("change", () => {
-        if (fechaSalidaInput.value) {
-            firmaSalidaCanvas.style.pointerEvents = "auto";
-            firmaSalidaCanvas.style.opacity = "1";
-            clearSignatureSalidaBtn.disabled = false;
-        } else {
-            firmaSalidaCanvas.style.pointerEvents = "none";
-            firmaSalidaCanvas.style.opacity = "0.5";
-            clearSignatureSalidaBtn.disabled = true;
-        }
-    });
+fechaSalidaInput.addEventListener("change", () => {
+    if (fechaSalidaInput.value) {
+        // Habilitar firma de salida
+        firmaSalidaCanvas.style.pointerEvents = "auto";
+        firmaSalidaCanvas.style.opacity = "1";
+        clearSignatureSalidaBtn.disabled = false;
+
+        // Habilitar textarea de nombre de firma
+        NombFSalida.disabled = false;
+        NombFSalida.style.opacity = "1";
+    } else {
+        // Deshabilitar firma de salida
+        firmaSalidaCanvas.style.pointerEvents = "none";
+        firmaSalidaCanvas.style.opacity = "0.5";
+        clearSignatureSalidaBtn.disabled = true;
+
+        // Deshabilitar textarea de nombre de firma
+        NombFSalida.disabled = true;
+        NombFSalida.style.opacity = "0.5";
+        NombFSalida.value = "";
+    }
+});
+
 document.getElementById('btnGenerarPDF').addEventListener('click', function() {
     const btn = this;
     const btnText = document.getElementById('btn-text');
@@ -219,4 +231,19 @@ function mostrarMensaje(tipo, texto) {
     setTimeout(() => {
         mensajeFeedback.style.display = 'none';
     }, 5000);
+}
+function validarCampo(id, mensajeError = "Este campo es obligatorio") {
+  const input = document.getElementById(id);
+  const errorDiv = document.getElementById("error-" + id);
+  const valor = input.value.trim();
+
+  if (!valor) {
+    input.classList.add("input-error");
+    if (errorDiv) errorDiv.textContent = mensajeError;
+    return false;
+  } else {
+    input.classList.remove("input-error");
+    if (errorDiv) errorDiv.textContent = "";
+    return true;
+  }
 }

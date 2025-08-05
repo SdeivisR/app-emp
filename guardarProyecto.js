@@ -327,6 +327,9 @@ document.getElementById("guardarProyectoBtn").addEventListener("click", function
     letrero_aereo_no: document.getElementById("letrero_aereo_no").checked,
     comentario_letrero_aereo: document.getElementById("comentario_letrero_aereo").value,
 
+    NombFEntrada: document.getElementById("NombFEntrada").value,
+    NombFSalida: document.getElementById("NombFSalida").value,
+
     // Nivel de combustible
     nivel1: document.getElementById("nivel1").checked,
     nivel2: document.getElementById("nivel2").checked,

@@ -390,3 +390,14 @@ canvas {
     z-index: 9999;
   }
 }
+.input-error {
+  border: 2px solid red;
+  background-color: #ffe5e5;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+  

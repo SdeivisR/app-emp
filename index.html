@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<div lang="en">
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,11 +31,14 @@
     </head>
 
         <body>
-            <div class="container">
-                <h1 class="text-2xl font-bold mb-6 text-center">Registro de Ingreso de Vehículos</h1>
+
             </div>
 
-            <div class="fab-container">
+            <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                <h1 class="text-2xl font-bold mb-6 text-center" style="font-size:25 pt;">Registro de Ingreso de Vehículos</h1>
+            </div>
+
+            <div class="fab-container"> 
                     <div class="fab-buttons">
                         <button id="btnGenerarPDF" type="button" class="btn-floating-item">
                             <span class="sr-only">Generar PDF</span>
@@ -81,45 +84,56 @@
                         </svg>
                     </button>
                 </div>
+
+
+
+
     </body>
         <div id="mensaje-feedback" class="message-box" style="display: none;"></div>
 
         <div id="registroVehiculoForm">
             <!-- Section: Driver and Vehicle Data -->
-            <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-                <h2 class="text-xl font-semibold mb-4">ENTREGA Y RECEPCION DE EQUIPOS</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label for="placa" class="block text-sm font-medium text-gray-700 mb-1">Placa del Vehículo:</label>
-                        <input type="text" id="placa" name="placa" class="input-field w-full" required>
-                    </div>
-                    <div>
-                        <label for="empresa" class="block text-sm font-medium text-gray-700 mb-1">Empresa:</label>
-                        <input type="text" id="empresa" name="empresa" class="input-field w-full" required>
-                    </div>
-                    <div>
-                        <label for="conductor" class="block text-sm font-medium text-gray-700 mb-1">Conductor:</label>
-                        <input type="text" id="conductor" name="conductor" class="input-field w-full" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="fecha_ingreso" class="block text-sm font-medium text-gray-700 mb-1">Fecha de Ingreso:</label>
-                        <input type="date" id="fecha_ingreso" name="fecha_ingreso" class="input-field w-full" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="hora_ingreso" class="block text-sm font-medium text-gray-700 mb-1">Hora de Ingreso:</label>
-                        <input type="time" id="hora_ingreso" name="hora_ingreso" class="input-field w-full" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="fecha_salida" class="block text-sm font-medium text-gray-700 mb-1">Fecha de Salida:</label>
-                        <input type="date" id="fecha_salida" name="fecha_salida" class="input-field w-full" required>
-                    </div>
-                    <div>
-                        <label for="kilometraje" class="block text-sm font-medium text-gray-700 mb-1">Kilometraje:</label>
-                        <input type="number" id="kilometraje" name="kilometraje" class="input-field w-full" min="0" required>
-                    </div>
-                    <div>
+                <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                    <h2 class="text-xl font-semibold mb-4">ENTREGA Y RECEPCION DE EQUIPOS</h2>
+                
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="placa" class="block text-sm font-medium text-gray-700 mb-1">Placa del Vehículo:</label>
+                            <input type="text" id="placa" name="placa" class="input-field w-full" required>
+                            <div id="error-placa" class="error-message"></div>
+                        </div>
+                        <div>
+                            <label for="empresa" class="block text-sm font-medium text-gray-700 mb-1">Empresa:</label>
+                            <input type="text" id="empresa" name="empresa" class="input-field w-full" required>
+                            <div id="error-empresa" class="error-message"></div>
+                        </div>
+                        <div>
+                            <label for="conductor" class="block text-sm font-medium text-gray-700 mb-1">Conductor:</label>
+                            <input type="text" id="conductor" name="conductor" class="input-field w-full" required>
+                            <div id="error-conductor" class="error-message"></div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="fecha_ingreso" class="block text-sm font-medium text-gray-700 mb-1">Fecha de Ingreso:</label>
+                            <input type="date" id="fecha_ingreso" name="fecha_ingreso" class="input-field w-full" required>
+                            <div id="error-fecha_ingreso" class="error-message"></div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="hora_ingreso" class="block text-sm font-medium text-gray-700 mb-1">Hora de Ingreso:</label>
+                            <input type="time" id="hora_ingreso" name="hora_ingreso" class="input-field w-full" required>
+                            <div id="error-hora_ingreso" class="error-message"></div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="fecha_salida" class="block text-sm font-medium text-gray-700 mb-1">Fecha de Salida:</label>
+                            <input type="date" id="fecha_salida" name="fecha_salida" class="input-field w-full" required>
+                        </div>
+                        <div>
+                            <label for="kilometraje" class="block text-sm font-medium text-gray-700 mb-1">Kilometraje:</label>
+                            <input type="number" id="kilometraje" name="kilometraje" class="input-field w-full" min="0" required>
+                            <div id="error-kilometraje" class="error-message"></div>
+                        </div>
+                        <div>
                         <label for="tipo_combustible" class="block text-sm font-medium text-gray-700 mb-1">Tipo de combustible:</label>
-                        <select id="tipo_combustible" name="tipo_combustible" class="input-field w-full" required>
+                            <select id="tipo_combustible" name="tipo_combustible" class="input-field w-full" required>
                             <option value="" disabled selected>Selecciona una opción</option>
                             <option value="Gasohol 90">Gasohol 90 (Regular)</option>
                             <option value="Gasohol 95">Gasohol 95 (Premium)</option>
@@ -127,9 +141,10 @@
                             <option value="Diésel B5">Diésel B5</option>
                             <option value="GLP">GLP (Gas Licuado de Petróleo)</option>
                             <option value="GNV">GNV (Gas Natural Vehicular)</option>
-                        </select>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
             <div class="bg-white p-6 rounded-lg shadow-md mb-6">
                 <h2 class="text-xl font-semibold mb-4">COMPONENTES PRINCIPALES</h2>
@@ -312,10 +327,9 @@
                         </div>
                         <textarea id="comentario_plumillas" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
                     </div>
-
-
                 </div>  
             </div>
+        </div>
 
             <!-- Section: Safety Elements and Tools -->
             <div class="bg-white p-6 rounded-lg shadow-md mb-6">
@@ -1093,6 +1107,7 @@
                         <button type="button" id="clearSignatureIngreso" class="btn-secondary absolute top-2 right-2 flex items-center gap-2 bg-white text-gray-700 p-2 rounded-lg shadow-md"aria-label="Limpiar firma de Entrada">
                             <i class="fa fa-eraser"></i>
                         </button>
+                        <textarea id="NombFEntrada" placeholder="Nombre del firma Ingreso " class="w-full border rounded p-1"></textarea>
                     </div>
                 </div>
                 <div class="flex-1">
@@ -1102,6 +1117,7 @@
                         <button type="button" id="clearSignatureSalida" disabled class="btn-secondary absolute top-2 right-2 flex items-center gap-2 bg-white text-gray-700 p-2 rounded-lg shadow-md"aria-label="Limpiar firma de Salida">
                             <i class="fa fa-eraser"></i>
                         </button>
+                        <textarea id="NombFSalida"disabled placeholder="Nombre del firma Salida " class="w-full border rounded p-1"></textarea>
                     </div>
                 </div>
             </div>

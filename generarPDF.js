@@ -14,7 +14,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const hora_ingreso = document.getElementById('hora_ingreso').value;
       const fecha_Salida = document.getElementById('fecha_salida').value;
       const kilometraje = document.getElementById('kilometraje').value;
-      const t_combustible = document.getElementById('tipo_combustible').value
+      const t_combustible = document.getElementById('tipo_combustible').value;
+
+      const camposValidos = [
+        validarCampo("placa"),
+        validarCampo("empresa"),
+        validarCampo("conductor"),
+        validarCampo("fecha_ingreso"),
+        validarCampo("hora_ingreso"),
+        validarCampo("kilometraje")
+      ];
+
+      if (camposValidos.includes(false)) {
+        return; // Detiene la ejecución si falta algún campo
+      }
+
       
       //Elementos//
 
@@ -329,6 +343,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const letrero_aereo_no = document.getElementById("letrero_aereo_no").checked;
       const c_letrero_aereo = document.getElementById("comentario_letrero_aereo").value;
 
+      const NombFSalida=document.getElementById("NombFSalida").value;
+      const NombFEntrada=document.getElementById("NombFEntrada").value;
+
       const nvl1=document.getElementById("nivel1").checked;
       const nvl2=document.getElementById("nivel2").checked;
       const nvl3=document.getElementById("nivel3").checked;
@@ -357,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
       page.drawText(`${fecha_ingreso}`, {x: 225,y: 790,size: 11,color: rgb(0, 0, 0),});
       page.drawText(`${hora_ingreso}`, {x: 452,y: 760,size: 11,color: rgb(0, 0, 0),});  
       page.drawText(`${fecha_Salida}`, {x: 452,y: 790,size: 11,color: rgb(0, 0, 0),});
-      page.drawText(`${kilometraje}`, {x: 452,y: 775,size: 11,color: rgb(0, 0, 0),});
+      page.drawText(`${kilometraje} Km`, {x: 452,y: 775,size: 11,color: rgb(0, 0, 0),});
       page.drawText(`${t_combustible}`, {x: 526, y: 78, size: 8, color: rgb(0, 0, 0),});
 
 
@@ -716,7 +733,8 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (nvl5) {
         page.drawText('X', { x: 558, y: 16, size: 14, color: rgb(0, 0, 0) });
 }
-
+      page.drawText(`${NombFEntrada}`, { x: 70, y: 17, size: 7, color: rgb(0, 0, 0) });
+      page.drawText(`${NombFSalida}`, { x: 270, y: 17, size: 7, color: rgb(0, 0, 0) });
       // Firmas desde canvas
       const firmaIngresoCanvas = document.getElementById('firmaIngresoCanvas');
       const firmaSalidaCanvas = document.getElementById('firmaSalidaCanvas');
@@ -730,8 +748,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const firmaIngresoImg = await pdfDoc.embedPng(firmaIngresoBytes);
       const firmaSalidaImg = await pdfDoc.embedPng(firmaSalidaBytes);
 
-      page.drawImage(firmaIngresoImg, { x: 70, y: 17, width: 100, height: 40 });
-      page.drawImage(firmaSalidaImg, { x: 270, y: 17, width: 100, height: 40 });
+      page.drawImage(firmaIngresoImg, { x: 70, y: 21, width: 98, height: 38 });
+      page.drawImage(firmaSalidaImg, { x: 270, y: 21, width: 98, height: 38 });
 
       const pdfBytes = await pdfDoc.save();
       const blob = new Blob([pdfBytes], { type: 'application/pdf' });
@@ -739,13 +757,6 @@ document.addEventListener('DOMContentLoaded', () => {
       window.open(url, '_blank');
     } catch (error) {
       console.error("Error al generar PDF:", error);
-      // ... dentro del setTimeout ...
-      if (pdfGeneradoExitosamente) {
-          mostrarMensaje('success', '¡PDF generado con éxito!');
-      } else {
-          mostrarMensaje('error', 'Ocurrió un error al generar el PDF. Inténtalo de nuevo.');
-      }
-
     }
   });
 });
