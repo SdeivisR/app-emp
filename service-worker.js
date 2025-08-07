@@ -1,5 +1,5 @@
 // service-worker.js
-const CACHE_NAME = 'checklist-cache-v2';
+const CACHE_NAME = 'checklist-cache-v3';
 const urlsToCache = [
   './',
   './index.html',
