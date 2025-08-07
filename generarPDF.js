@@ -753,7 +753,7 @@ document.addEventListener('DOMContentLoaded', () => {
       page.drawImage(firmaIngresoImg, { x: 70, y: 21, width: 98, height: 38 });
       page.drawImage(firmaSalidaImg, { x: 270, y: 21, width: 98, height: 38 });
 
-      const pdfBytes = await pdfDoc.save();
+     const pdfBytes = await pdfDoc.save();
       const blob = new Blob([pdfBytes], { type: 'application/pdf' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
