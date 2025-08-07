@@ -753,10 +753,20 @@ document.addEventListener('DOMContentLoaded', () => {
       page.drawImage(firmaIngresoImg, { x: 70, y: 21, width: 98, height: 38 });
       page.drawImage(firmaSalidaImg, { x: 270, y: 21, width: 98, height: 38 });
 
-      const pdfBytes = await pdfDoc.save();
+     const pdfBytes = await pdfDoc.save();
       const blob = new Blob([pdfBytes], { type: 'application/pdf' });
       const url = URL.createObjectURL(blob);
-      window.open(url, '_blank');
+      const a = document.createElement('a');
+      a.href = url;
+
+      // Limpia caracteres inválidos (como /)
+      const fechaLimpia = fecha_ingreso.replace(/[\/\\:*?"<>|]/g, '-');
+      const horaLimpia= hora_ingreso.replace(/[\/\\:*?"<>|]/g, '-');
+      a.download = `CLS_${placa}_${fechaLimpia}_${horaLimpia}.pdf`;
+      a.click();
+
+      // Libera el objeto blob
+      URL.revokeObjectURL(url);
     } catch (error) {
       console.error("Error al generar PDF:", error);
     }
