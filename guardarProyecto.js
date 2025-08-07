@@ -8,7 +8,10 @@ document.getElementById("guardarProyectoBtn").addEventListener("click", function
     hora_ingreso: document.getElementById("hora_ingreso").value,
     fecha_salida: document.getElementById("fecha_salida").value,
     kilometraje: document.getElementById("kilometraje").value,
+    resInsp: document.getElementById("resInsp").value,
     tipo_combustible: document.getElementById("tipo_combustible").value,
+
+
     //
     // Componentes Principales
     //
@@ -116,6 +119,8 @@ document.getElementById("guardarProyectoBtn").addEventListener("click", function
     herramientas_si: document.getElementById("herramientas_si").checked,
     herramientas_no: document.getElementById("herramientas_no").checked,
     comentario_herramientas: document.getElementById("comentario_herramientas").value,
+    pico: document.getElementById("pico").checked,
+    lampa: document.getElementById("lampa").checked,
 
     anti_si: document.getElementById("anti_si").checked,
     anti_no: document.getElementById("anti_no").checked,

@@ -14,9 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const hora_ingreso = document.getElementById('hora_ingreso').value;
       const fecha_Salida = document.getElementById('fecha_salida').value;
       const kilometraje = document.getElementById('kilometraje').value;
+      const resInsp = document.getElementById('resInsp').value;
       const t_combustible = document.getElementById('tipo_combustible').value;
 
-      const camposAValidar = ["placa", "empresa", "conductor", "fecha_ingreso", "hora_ingreso", "kilometraje"];
+      const camposAValidar = ["placa", "empresa", "conductor", "fecha_ingreso", "hora_ingreso", "kilometraje", "resInsp"];
       camposAValidar.forEach(id => activarCorreccionCampo(id)); // activa eventos para restaurar estilo
 
       const camposValidos = camposAValidar.map(id => validarCampo(id));
@@ -26,9 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
 }
 
-      
-
-      
       //Elementos//
 
       const botiquin_si = document.getElementById("botiquin_si").checked;
@@ -72,6 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const herramientas_si = document.getElementById("herramientas_si").checked;
       const herramientas_no = document.getElementById("herramientas_no").checked;
+      const pico = document.getElementById("pico");
+      const lampa = document.getElementById("lampa");
       const c_herramientas = document.getElementById("comentario_herramientas").value;
 
       const antiderrames_si = document.getElementById("anti_si").checked;
@@ -375,6 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
       page.drawText(`${fecha_Salida}`, {x: 452,y: 790,size: 11,color: rgb(0, 0, 0),});
       page.drawText(`${kilometraje} Km`, {x: 452,y: 775,size: 11,color: rgb(0, 0, 0),});
       page.drawText(`${t_combustible}`, {x: 526, y: 78, size: 8, color: rgb(0, 0, 0),});
+      page.drawText(`${resInsp}`, {x: 482,y: 803,size: 9,color: rgb(0, 0, 0),});
 
 
       // Elementos
@@ -418,6 +419,8 @@ document.addEventListener('DOMContentLoaded', () => {
       else if (linterna_no) { page.drawText('X', {x: 175, y: 376, size: 16, color: rgb(0, 0, 0)}); }
 
       page.drawText(`${c_herramientas}`, {x: 190, y: 362, size: 10, color: rgb(0, 0, 0)});
+      if (pico.checked) {page.drawText(`P(X)`, {x: 105, y: 365, size: 10, color: rgb(0, 0, 0)});}
+      if (lampa.checked) {page.drawText(`L(X)`, {x: 130, y: 365, size: 10, color: rgb(0, 0, 0)});}
       if (herramientas_si) { page.drawText('X', {x: 160, y: 362, size: 16, color: rgb(0, 0, 0)}); }
       else if (herramientas_no) { page.drawText('X', {x: 175, y: 362, size: 16, color: rgb(0, 0, 0)}); }
 
@@ -759,4 +762,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
 

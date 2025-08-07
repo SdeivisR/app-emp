@@ -400,4 +400,36 @@ canvas {
   font-size: 0.875rem;
   margin-top: 4px;
 }
+.tag-checkbox-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.tag-checkbox-label {
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.tag-checkbox-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.tag-checkbox-box {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid #d1d5db; /* gray-300 */
+  transition: all 0.3s ease;
+}
+
+.tag-checkbox-input:checked + .tag-checkbox-box {
+  background-color: #4c5cd8;
+  color: white;
+}
+
   

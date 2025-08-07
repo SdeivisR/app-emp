@@ -66,3 +66,7 @@ function cargarDatosEnFormulario(datos) {
         }
     }
 }
+
+function showNotification(mensaje) {
+    console.log("[NOTIFICACIÓN] " + mensaje);
+}

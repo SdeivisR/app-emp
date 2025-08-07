@@ -27,6 +27,7 @@
         <script src="nuevoChecklist.js" defer></script>
         <script src="script.js" defer></script>
         <link rel="manifest" href="/manifest.json">
+        <link rel="icon" href="favicon.ico" />
 
     </head>
 
@@ -132,6 +133,11 @@
                             <div id="error-kilometraje" class="error-message"></div>
                         </div>
                         <div>
+                            <label for="responsableinsp" class="block text-sm font-medium text-gray-700 mb-1">Responsable de la Inspección:</label>
+                            <input type="text" id="resInsp" name="responsableinsp" class="input-field w-full" required>
+                            <div id="error-resInsp" class="error-message"></div>
+                        </div>
+                        <div>
                         <label for="tipo_combustible" class="block text-sm font-medium text-gray-700 mb-1">Tipo de combustible:</label>
                             <select id="tipo_combustible" name="tipo_combustible" class="input-field w-full" required>
                             <option value="" disabled selected>Selecciona una opción</option>
@@ -143,6 +149,7 @@
                             <option value="GNV">GNV (Gas Natural Vehicular)</option>
                             </select>
                         </div>
+                        
                     </div>
                 </div>
 
@@ -461,6 +468,17 @@
                                 <label for="herramientas_si">Sí</label>
                                 <input type="radio" id="herramientas_no" name="herramientas" value="No" class="radio-option" >
                                 <label for="herramientas_no">No</label>
+                            </div>
+                            <div class="tag-checkbox-container">
+                            <label class="tag-checkbox-label">
+                                <input type="checkbox" id="pico" name="pico" class="tag-checkbox-input" />
+                                <div class="tag-checkbox-box">Pico</div>
+                            </label>
+
+                            <label class="tag-checkbox-label">
+                                <input type="checkbox" id="lampa" name="lampa" class="tag-checkbox-input" />
+                                <div class="tag-checkbox-box">Lampa</div>
+                            </label>
                             </div>
                             <textarea id="comentario_herramientas" placeholder="Comentario " class="w-full border rounded p-1"></textarea>
                         </div>

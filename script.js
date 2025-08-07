@@ -179,35 +179,6 @@ fechaSalidaInput.addEventListener("change", () => {
     }
 });
 
-document.getElementById('btnGenerarPDF').addEventListener('click', function() {
-    const btn = this;
-    const btnText = document.getElementById('btn-text');
-    const spinner = document.getElementById('loading-spinner');
-
-    // Paso 1: Antes de generar el PDF, muestra el spinner
-    btnText.style.display = 'none';
-    spinner.style.display = 'block';
-    btn.disabled = true; // Deshabilita el botón para evitar clics múltiples
-
-    // Simulación de una tarea que tarda 2 segundos
-    setTimeout(() => {
-        // Paso 2: Después de generar el PDF, oculta el spinner
-        btnText.style.display = 'block';
-        spinner.style.display = 'none';
-        btn.disabled = false; // Vuelve a habilitar el botón
-
-        // Llama a la función que muestra el mensaje de éxito o error
-        // Aquí deberías poner la condición de si fue exitoso o no
-        const pdfGeneradoExitosamente = true; // Cambia esto con tu lógica real
-
-        if (pdfGeneradoExitosamente) {
-            mostrarMensaje('success', '¡PDF generado con éxito!');
-        } else {
-            mostrarMensaje('error', 'Ocurrió un error al generar el PDF. Inténtalo de nuevo.');
-        }
-    }, 2000); // 2 segundos
-});
-
 // Función para mostrar mensajes de feedback
 function mostrarMensaje(tipo, texto) {
     const mensajeFeedback = document.getElementById('mensaje-feedback');
