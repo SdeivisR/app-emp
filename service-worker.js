@@ -1,19 +1,7 @@
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open('v1').then(cache =>
-      cache.addAll([
-        '/',
-        '/index.html',
-        '/style.css',
-        '/app.js'
-      ])
-    )
-  );
-});
-
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
-  );
-});
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(reg => console.log('Service Worker registrado con éxito:', reg))
+      .catch(err => console.error('Error al registrar el Service Worker:', err));
+  });
+} 
